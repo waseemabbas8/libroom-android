@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LIBroom</string>
+    <string name="app_slogan">All you need</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+</resources>
