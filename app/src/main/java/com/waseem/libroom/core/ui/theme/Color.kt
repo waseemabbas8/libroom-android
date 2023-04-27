@@ -24,4 +24,5 @@ object LightColors {
     val surface = background
     val surfaceVariant = Color(0xFFf4dddc)
     val outline = Color(0xFF857372)
+    val textGrey = Color(0xFF8f929a)
 }
