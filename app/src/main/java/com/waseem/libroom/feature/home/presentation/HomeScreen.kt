@@ -1,17 +1,29 @@
 package com.waseem.libroom.feature.home.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,6 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
+import com.waseem.libroom.core.compose.SizzleTab
+import com.waseem.libroom.core.compose.TabIndicator
 import com.waseem.libroom.core.ui.ThemedPreview
 import com.waseem.libroom.core.ui.theme.LightColors
 
@@ -31,13 +45,13 @@ fun HomeScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
+                .padding(it)
         ) {
             Spacer(modifier = Modifier.height(35.dp))
             Text(
                 text = "Discover Books", style = MaterialTheme.typography.displayLarge,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
-            Spacer(modifier = Modifier.height(10.dp))
             HomeTabs()
             Spacer(modifier = Modifier.height(35.dp))
             RecentReads()
@@ -49,24 +63,25 @@ fun HomeScreen() {
 
 @Composable
 private fun HomeTabs() {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(25.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
-    ) {
-        items(5) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(text = "Overview", style = MaterialTheme.typography.bodyLarge)
-                Spacer(modifier = Modifier.height(4.dp))
-                //TODO: change logic with selected tab
-                if(it == 0) {
-                    Divider(
-                        thickness = 3.dp,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.width(30.dp)
-                    )
-                }
+    val tabIndex = remember { mutableIntStateOf(0) }
+
+    val titles = listOf("Overview", "Business", "Design", "Economics")
+
+    Column {
+        ScrollableTabRow(
+            selectedTabIndex = tabIndex.intValue,
+            edgePadding = 16.dp,
+            divider = {},
+            indicator = { tabPositions ->
+                TabIndicator(tabPositions = tabPositions, tabIndex = tabIndex.intValue)
+            },
+        ) {
+            titles.forEachIndexed { index, title ->
+                SizzleTab(
+                    title = title,
+                    selected = tabIndex.intValue == index,
+                    onClick = { tabIndex.intValue = index }
+                )
             }
         }
     }
@@ -143,7 +158,10 @@ private fun Popular() {
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
-                    Text(text = "Already Enough. A Path to Self Control", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = "Already Enough. A Path to Self Control",
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "by Lisa Olivera",

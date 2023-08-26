@@ -1,30 +1,23 @@
 package com.waseem.libroom.core.ui.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-private val DarkColorScheme = darkColorScheme(
+private val _darkColorScheme = darkColorScheme(
     primary = LightColors.primary,
     secondary = LightColors.secondary,
     tertiary = LightColors.tertiary
 )
 
-private val LightColorScheme = lightColorScheme(
+private val _lightColorScheme = lightColorScheme(
     background = LightColors.background,
     primary = LightColors.primary,
     primaryContainer =LightColors.primaryContainer,
@@ -55,8 +48,8 @@ fun LIBroomTheme(
 ) {
 
     val colorScheme = when {
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> _darkColorScheme
+        else -> _lightColorScheme
     }
 
     val view = LocalView.current
