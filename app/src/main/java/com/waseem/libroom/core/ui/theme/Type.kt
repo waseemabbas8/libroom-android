@@ -21,31 +21,41 @@ private val baseTextStyle = TextStyle(
 )
 
 val Typography = Typography(
-    bodyLarge = baseTextStyle.copy(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
     displayLarge = baseTextStyle.copy(
         fontWeight = FontWeight.Bold,
-        fontSize = 40.sp,
-        lineHeight = 50.sp,
+        fontSize = 57.sp,
+        lineHeight = 64.sp,
+        letterSpacing = (-0.25).sp
     ),
     displayMedium = baseTextStyle.copy(
         fontWeight = FontWeight.Medium,
         fontSize = 45.sp,
         lineHeight = 52.sp,
+        letterSpacing = 0.sp
+    ),
+    displaySmall = baseTextStyle.copy(
+        fontWeight = FontWeight.Bold,
+        fontSize = 36.sp,
+        lineHeight = 44.sp,
+        letterSpacing = 0.sp
     ),
     headlineLarge = baseTextStyle.copy(
         fontWeight = FontWeight.Bold,
         fontSize = 32.sp,
         lineHeight = 40.sp,
+        letterSpacing = 0.sp
     ),
     headlineMedium = baseTextStyle.copy(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 28.sp,
         lineHeight = 36.sp,
+        letterSpacing = 0.sp
+    ),
+    headlineSmall = baseTextStyle.copy(
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp
     ),
     titleLarge = baseTextStyle.copy(
         fontWeight = FontWeight.Medium,
@@ -54,19 +64,52 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
     titleMedium = baseTextStyle.copy(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp
     ),
-    /* Other default text styles to override
-
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
+    titleSmall = baseTextStyle.copy(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp
+    ),
+    labelLarge = baseTextStyle.copy(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp
+    ),
+    labelMedium = baseTextStyle.copy(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
+    ),
+    labelSmall = baseTextStyle.copy(
+        fontWeight = FontWeight.SemiBold,
         fontSize = 11.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
-    )
-    */
+    ),
+    bodyLarge = baseTextStyle.copy(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
+    ),
+    bodyMedium = baseTextStyle.copy(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp,
+        color = LightColors.textGrey,
+    ),
+    bodySmall = baseTextStyle.copy(
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.4.sp
+    ),
 )
