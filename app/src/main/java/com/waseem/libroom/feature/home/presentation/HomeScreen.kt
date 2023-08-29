@@ -15,8 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.waseem.libroom.R
+import com.waseem.libroom.core.compose.ScreenTitle
 import com.waseem.libroom.core.compose.SizzleTab
 import com.waseem.libroom.core.compose.TabIndicator
 import com.waseem.libroom.core.ui.ThemedPreview
@@ -30,11 +34,8 @@ fun HomeScreen() {
                 .verticalScroll(rememberScrollState())
                 .padding(it)
         ) {
-            Spacer(modifier = Modifier.height(35.dp))
-            Text(
-                text = "Discover books", style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.vertical_screen_margin)))
+            ScreenTitle(title = stringResource(id = R.string.discover_books))
             HomeTabs()
         }
     }

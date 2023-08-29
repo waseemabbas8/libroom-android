@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,9 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
+import com.waseem.libroom.core.compose.SectionTitle
 import com.waseem.libroom.core.ui.theme.LightColors
 
 
@@ -71,15 +70,8 @@ private fun RecentReads() {
 
 @Composable
 private fun Popular() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Bottom
-    ) {
-        Text(text = "Popular", style = MaterialTheme.typography.headlineSmall)
-        Text(text = "View All", style = MaterialTheme.typography.titleMedium.copy(color = LightColors.textGrey))
+    SectionTitle(title = "Popular") {
+
     }
     Spacer(modifier = Modifier.height(20.dp))
     LazyColumn(

@@ -6,9 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import com.waseem.libroom.core.ui.theme.LIBroomTheme
 import com.waseem.libroom.core.ui.theme.LightColors
 
-/**
- * @author Ryan Simon
- **/
+
 @Composable
 internal fun ThemedPreview(
     darkTheme: Boolean = false,
