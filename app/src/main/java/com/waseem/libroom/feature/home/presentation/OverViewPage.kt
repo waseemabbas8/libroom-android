@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.SectionTitle
@@ -29,19 +30,15 @@ import com.waseem.libroom.core.ui.theme.LightColors
 
 @Composable
 fun OverViewPage() {
-    Spacer(modifier = Modifier.height(35.dp))
     RecentReads()
-    Spacer(modifier = Modifier.height(35.dp))
     Popular()
 }
 
 @Composable
 private fun RecentReads() {
-    Text(
-        text = "Recently read", style = MaterialTheme.typography.headlineSmall,
-        modifier = Modifier.padding(horizontal = 16.dp)
-    )
-    Spacer(modifier = Modifier.height(20.dp))
+    SectionTitle(title = stringResource(id = R.string.recent_reads)) {
+        //TODO: implement view all callback
+    }
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
@@ -55,13 +52,13 @@ private fun RecentReads() {
                     modifier = Modifier
                         .width(150.dp)
                         .height(200.dp)
-                        .clip(RoundedCornerShape(10.dp)),
+                        .clip(MaterialTheme.shapes.small),
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(text = "Animal Farm", style = MaterialTheme.typography.titleMedium)
                 Text(
                     text = "by George Orwell",
-                    style = MaterialTheme.typography.bodyMedium.copy(color = LightColors.textGrey)
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }
@@ -70,10 +67,9 @@ private fun RecentReads() {
 
 @Composable
 private fun Popular() {
-    SectionTitle(title = "Popular") {
-
+    SectionTitle(title = stringResource(id = R.string.popular)) {
+        //TODO: implement view all callback
     }
-    Spacer(modifier = Modifier.height(20.dp))
     LazyColumn(
         modifier = Modifier.height(200.dp),
         userScrollEnabled = false,
@@ -90,7 +86,7 @@ private fun Popular() {
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(50.dp)
-                        .clip(RoundedCornerShape(8.dp)),
+                        .clip(MaterialTheme.shapes.small),
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
