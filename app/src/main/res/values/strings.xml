@@ -9,10 +9,13 @@
     <string name="arrow_back">Arrow Back</string>
 
     <string name="discover_books">Discover Books</string>
+    <string name="my_bookshelf">My bookshelf</string>
 
     <string name="recent_reads">Recent read</string>
+    <string name="recently_read">Recently read</string>
     <string name="popular">Popular</string>
     <string name="top_authors">Top Authors</string>
     <string name="top_categories">Top Categories</string>
     <string name="view_all">View All</string>
+    <string name="search_box_placeholder">Titles, authors, or topics</string>
 </resources>

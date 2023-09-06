@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.SectionTitle
-import com.waseem.libroom.core.ui.theme.LightColors
 
 
 @Composable
@@ -36,7 +35,12 @@ fun OverViewPage() {
 
 @Composable
 private fun RecentReads() {
-    SectionTitle(title = stringResource(id = R.string.recent_reads)) {
+    SectionTitle(
+        title = stringResource(id = R.string.recent_reads),
+        modifier = Modifier.padding(
+            bottom = dimensionResource(id = R.dimen.section_title_margin_bottom)
+        )
+    ) {
         //TODO: implement view all callback
     }
     LazyRow(
@@ -67,7 +71,12 @@ private fun RecentReads() {
 
 @Composable
 private fun Popular() {
-    SectionTitle(title = stringResource(id = R.string.popular)) {
+    SectionTitle(
+        title = stringResource(id = R.string.popular),
+        modifier = Modifier.padding(
+            bottom = dimensionResource(id = R.dimen.section_title_margin_bottom)
+        )
+    ) {
         //TODO: implement view all callback
     }
     LazyColumn(

@@ -12,34 +12,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
 import com.waseem.libroom.core.ui.theme.LightColors
 
 @Composable
 fun ScreenTitle(
-    title: String
+    title: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = title, style = MaterialTheme.typography.displaySmall,
-        modifier = Modifier.padding(
-            horizontal = dimensionResource(id = (R.dimen.horizontal_screen_padding))
-        )
+        modifier = modifier.padding(top = dimensionResource(id = (R.dimen.vertical_screen_margin)))
     )
 }
 
 @Composable
 fun SectionTitle(
     title: String,
-    onViewAllClick: () -> Unit
+    modifier: Modifier = Modifier,
+    onViewAllClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
             .padding(
                 start = dimensionResource(id = R.dimen.horizontal_screen_padding),
-                top = dimensionResource(id = R.dimen.section_title_margin_top),
-                bottom = dimensionResource(id = R.dimen.section_title_margin_bottom)
+                top = dimensionResource(id = R.dimen.section_title_margin_top)
             ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

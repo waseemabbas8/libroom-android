@@ -1,16 +1,12 @@
 package com.waseem.libroom.feature.home.presentation
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -34,8 +30,12 @@ fun HomeScreen() {
                 .verticalScroll(rememberScrollState())
                 .padding(it)
         ) {
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.vertical_screen_margin)))
-            ScreenTitle(title = stringResource(id = R.string.discover_books))
+            ScreenTitle(
+                title = stringResource(id = R.string.discover_books),
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
+                )
+            )
             HomeTabs()
         }
     }

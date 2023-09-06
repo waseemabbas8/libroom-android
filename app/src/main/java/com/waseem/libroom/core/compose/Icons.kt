@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.rounded.DateRange
+import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -81,6 +83,32 @@ fun ArrowBackIcon(
     )
 }
 
+@Composable
+fun SortingIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        imageVector = Icons.Rounded.DateRange,
+        contentDescription = "",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun MenuIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        imageVector = Icons.Rounded.Menu,
+        contentDescription = "",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
 @OptIn(ExperimentalLayoutApi::class)
 @Preview
 @Composable
@@ -91,6 +119,8 @@ fun previewIcons() {
             SearchIcon()
             FavoriteIcon()
             ProfileIcon()
+            SortingIcon()
+            MenuIcon()
         }
     }
 }
