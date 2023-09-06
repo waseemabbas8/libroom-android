@@ -47,26 +47,24 @@ private fun HomeTabs() {
 
     val titles = listOf("Overview", "Business", "Design", "Economics")
 
-    Column {
-        ScrollableTabRow(
-            selectedTabIndex = tabIndex.intValue,
-            edgePadding = 16.dp,
-            divider = {},
-            indicator = { tabPositions ->
-                TabIndicator(tabPositions = tabPositions, tabIndex = tabIndex.intValue)
-            },
-        ) {
-            titles.forEachIndexed { index, title ->
-                SizzleTab(
-                    title = title,
-                    selected = tabIndex.intValue == index,
-                    onClick = { tabIndex.intValue = index }
-                )
-            }
+    ScrollableTabRow(
+        selectedTabIndex = tabIndex.intValue,
+        edgePadding = 16.dp,
+        divider = {},
+        indicator = { tabPositions ->
+            TabIndicator(tabPositions = tabPositions, tabIndex = tabIndex.intValue)
+        },
+    ) {
+        titles.forEachIndexed { index, title ->
+            SizzleTab(
+                title = title,
+                selected = tabIndex.intValue == index,
+                onClick = { tabIndex.intValue = index }
+            )
         }
-        if (tabIndex.intValue == 0) {
-            OverViewPage()
-        }
+    }
+    if (tabIndex.intValue == 0) {
+        OverViewPage()
     }
 }
 

@@ -81,28 +81,7 @@ fun SearchScreen() {
                     SectionTitle(title = stringResource(id = R.string.top_authors)) {
                         //TODO: implement view all callback
                     }
-                    LazyRow(
-                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_screen_padding)),
-                        contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)),
-                    ) {
-                        items(6) {
-                            Column {
-                                Image(
-                                    painter = painterResource(id = R.drawable.book_cover),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier
-                                        .size(60.dp)
-                                        .clip(MaterialTheme.shapes.small),
-                                )
-                                Text(
-                                    text = "E. James",
-                                    style = MaterialTheme.typography.bodyMedium.copy(Color.Black),
-                                    modifier = Modifier.padding(top = 4.dp)
-                                )
-                            }
-                        }
-                    }
+                    Authors()
                     SectionTitle(title = stringResource(id = R.string.top_categories)) {
                         //TODO: implement view all callback
                     }
@@ -132,14 +111,44 @@ fun SearchScreen() {
                         painter = painterResource(id = R.drawable.book_cover),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.aspectRatio(1.6f).clip(MaterialTheme.shapes.small)
+                        modifier = Modifier
+                            .aspectRatio(1.6f)
+                            .clip(MaterialTheme.shapes.small)
                     )
                     Text(
                         text = "Travel",
-                        modifier = Modifier.padding(16.dp).align(Alignment.BottomStart),
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .align(Alignment.BottomStart),
                         style = MaterialTheme.typography.titleMedium.copy(color = Color.White)
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Authors() {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_screen_padding)),
+        contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)),
+    ) {
+        items(6) {
+            Column {
+                Image(
+                    painter = painterResource(id = R.drawable.book_cover),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(60.dp)
+                        .clip(MaterialTheme.shapes.small),
+                )
+                Text(
+                    text = "E. James",
+                    style = MaterialTheme.typography.bodyMedium.copy(Color.Black),
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
         }
     }
