@@ -1,9 +1,6 @@
 package com.waseem.libroom.core.compose
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Search
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -37,12 +34,7 @@ fun SearchBox(
             unfocusedContainerColor = colorResource(id = R.color.text_filed_background)
         ),
         modifier = modifier.fillMaxWidth(),
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Rounded.Search,
-                contentDescription = ""
-            )
-        }
+        leadingIcon = { SearchIcon() }
     )
 }
 

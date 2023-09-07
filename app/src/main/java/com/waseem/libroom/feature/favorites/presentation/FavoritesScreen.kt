@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,10 +28,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
-import com.waseem.libroom.core.compose.MenuIcon
+import com.waseem.libroom.core.compose.ImportExportIcon
 import com.waseem.libroom.core.compose.ScreenTitle
 import com.waseem.libroom.core.compose.SearchBox
-import com.waseem.libroom.core.compose.SortingIcon
+import com.waseem.libroom.core.compose.SortIcon
 import com.waseem.libroom.core.ui.ThemedPreview
 import com.waseem.libroom.core.ui.theme.LightColors
 
@@ -67,15 +68,18 @@ fun FavoritesScreen() {
                         painter = painterResource(id = R.drawable.book_cover),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .aspectRatio(0.7f)
-                            .clip(MaterialTheme.shapes.small),
+                        modifier = Modifier.aspectRatio(0.7f).clip(MaterialTheme.shapes.small)
                     )
                     Spacer(modifier = Modifier.height(10.dp))
-                    Text(text = "Animal Farm", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = "Animal Farm",
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1
+                    )
                     Text(
                         text = "George Orwell",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1
                     )
                 }
             }
@@ -89,13 +93,16 @@ private fun SortingView() {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        SortingIcon()
+        ImportExportIcon()
         Text(
             text = stringResource(id = R.string.recently_read),
-            modifier = Modifier.padding(start = 8.dp).weight(1f),
+            modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.titleMedium.copy(LightColors.textGrey)
         )
-        MenuIcon ()
+        IconButton(onClick = { /*TODO*/ }) {
+            SortIcon()
+        }
+
     }
 }
 

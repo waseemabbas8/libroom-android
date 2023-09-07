@@ -3,14 +3,17 @@ package com.waseem.libroom.core.compose
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
-import androidx.compose.material.icons.rounded.DateRange
-import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.waseem.libroom.R
 import com.waseem.libroom.core.ui.ThemedPreview
@@ -20,13 +23,11 @@ fun defaultIconTint() = Color.Gray
 
 @Composable
 fun HomeIcon(
-    modifier: Modifier = Modifier,
-    tint: Color = defaultIconTint()
+    modifier: Modifier = Modifier
 ) {
     Icon(
-        imageVector = Icons.Outlined.Home,
+        imageVector = ImageVector.vectorResource(id = R.drawable.ic_home),
         contentDescription = stringResource(id = R.string.home),
-        tint = tint,
         modifier = modifier
     )
 }
@@ -37,7 +38,7 @@ fun SearchIcon(
     tint: Color = defaultIconTint()
 ) {
     Icon(
-        imageVector = Icons.Outlined.Search,
+        imageVector = ImageVector.vectorResource(id = R.drawable.ic_search),
         contentDescription = stringResource(id = R.string.search),
         tint = tint,
         modifier = modifier
@@ -50,7 +51,7 @@ fun FavoriteIcon(
     tint: Color = defaultIconTint()
 ) {
     Icon(
-        imageVector = Icons.Outlined.Favorite,
+        imageVector = Icons.Rounded.FavoriteBorder,
         contentDescription = stringResource(id = R.string.favorites),
         tint = tint,
         modifier = modifier
@@ -59,13 +60,11 @@ fun FavoriteIcon(
 
 @Composable
 fun ProfileIcon(
-    modifier: Modifier = Modifier,
-    tint: Color = defaultIconTint()
+    modifier: Modifier = Modifier
 ) {
     Icon(
         imageVector = Icons.Outlined.Person,
         contentDescription = stringResource(id = R.string.profile),
-        tint = tint,
         modifier = modifier
     )
 }
@@ -76,7 +75,7 @@ fun ArrowBackIcon(
     tint: Color = defaultIconTint()
 ) {
     Icon(
-        imageVector = Icons.Outlined.ArrowBack,
+        imageVector = Icons.Rounded.ArrowBack,
         contentDescription = stringResource(id = R.string.arrow_back),
         tint = tint,
         modifier = modifier
@@ -84,12 +83,12 @@ fun ArrowBackIcon(
 }
 
 @Composable
-fun SortingIcon(
+fun ImportExportIcon(
     modifier: Modifier = Modifier,
     tint: Color = defaultIconTint()
 ) {
     Icon(
-        imageVector = Icons.Rounded.DateRange,
+        painter = painterResource(id = R.drawable.ic_import_export),
         contentDescription = "",
         tint = tint,
         modifier = modifier
@@ -97,12 +96,12 @@ fun SortingIcon(
 }
 
 @Composable
-fun MenuIcon(
+fun SortIcon(
     modifier: Modifier = Modifier,
     tint: Color = defaultIconTint()
 ) {
     Icon(
-        imageVector = Icons.Rounded.Menu,
+        painter = painterResource(id = R.drawable.ic_sort),
         contentDescription = "",
         tint = tint,
         modifier = modifier
@@ -119,8 +118,8 @@ fun previewIcons() {
             SearchIcon()
             FavoriteIcon()
             ProfileIcon()
-            SortingIcon()
-            MenuIcon()
+            ImportExportIcon()
+            SortIcon()
         }
     }
 }

@@ -1,14 +1,24 @@
 package com.waseem.libroom.feature.root
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -20,7 +30,9 @@ import com.waseem.libroom.core.compose.FavoriteIcon
 import com.waseem.libroom.core.compose.HomeIcon
 import com.waseem.libroom.core.compose.ProfileIcon
 import com.waseem.libroom.core.compose.SearchIcon
+import com.waseem.libroom.core.compose.defaultIconTint
 import com.waseem.libroom.core.ui.ThemedPreview
+import com.waseem.libroom.core.ui.theme.LightColors
 import com.waseem.libroom.navigation.AppNavGraph
 import com.waseem.libroom.navigation.LeafScreen
 import com.waseem.libroom.navigation.RootScreen
@@ -60,51 +72,54 @@ private fun BottomNavBar(
     currentSelectedScreen: RootScreen
 ) {
     NavigationBar {
-        NavigationBarItem(
+        NavBarItem(
             selected = currentSelectedScreen == RootScreen.Home,
             onClick = { navController.navigateToRootScreen(RootScreen.Home) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.home))
-            },
-            icon = {
-                HomeIcon()
-            }
+            label = stringResource(id = R.string.home),
+            icon = { HomeIcon() }
         )
-        NavigationBarItem(
+        NavBarItem(
             selected = currentSelectedScreen == RootScreen.Search,
             onClick = { navController.navigateToRootScreen(RootScreen.Search) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.search))
-            },
-            icon = {
-                SearchIcon()
-            }
+            label = stringResource(id = R.string.search),
+            icon = { SearchIcon(tint = LocalContentColor.current) }
         )
-        NavigationBarItem(
+        NavBarItem(
             selected = currentSelectedScreen == RootScreen.Favorites,
             onClick = { navController.navigateToRootScreen(RootScreen.Favorites) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.favorites))
-            },
-            icon = {
-                FavoriteIcon()
-            }
+            label = stringResource(id = R.string.favorites),
+            icon = { FavoriteIcon(tint = LocalContentColor.current) }
         )
-        NavigationBarItem(
+        NavBarItem(
             selected = currentSelectedScreen == RootScreen.Profile,
             onClick = { navController.navigateToRootScreen(RootScreen.Profile) },
-            alwaysShowLabel = true,
-            label = {
-                Text(text = stringResource(id = R.string.profile))
-            },
-            icon = {
-                ProfileIcon()
-            }
+            label = stringResource(id = R.string.profile),
+            icon = { ProfileIcon() }
         )
     }
+}
+
+@Composable
+private fun RowScope.NavBarItem(
+    selected: Boolean,
+    onClick: () -> Unit,
+    label: String,
+    icon: @Composable () -> Unit
+) {
+    NavigationBarItem(
+        selected = selected,
+        onClick = onClick,
+        alwaysShowLabel = true,
+        label = {
+            Text(text = label)
+        },
+        icon = icon,
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = Color.Black,
+            unselectedTextColor = LightColors.textGrey,
+            unselectedIconColor = defaultIconTint()
+        )
+    )
 }
 
 @Stable
