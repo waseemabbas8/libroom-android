@@ -1,4 +1,8 @@
 package com.waseem.libroom
 
-class LIBroomApplication {
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class LIBroomApplication : Application() {
 }

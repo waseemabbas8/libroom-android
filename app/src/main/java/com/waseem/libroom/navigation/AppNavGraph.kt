@@ -1,6 +1,7 @@
 package com.waseem.libroom.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -38,7 +39,7 @@ private fun NavGraphBuilder.addHomeRoute(navController: NavController) {
 }
 private fun NavGraphBuilder.showHome(navController: NavController) {
     composable(route = LeafScreen.Home.route) {
-        HomeScreen()
+        HomeScreen(viewModel = hiltViewModel())
     }
 }
 //end of home navigation

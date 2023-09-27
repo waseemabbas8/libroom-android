@@ -18,4 +18,11 @@
     <string name="top_categories">Top Categories</string>
     <string name="view_all">View All</string>
     <string name="search_box_placeholder">Titles, authors, or topics</string>
+    <string name="today_reading">Today\'s Reading</string>
+    <string name="listened_hours">Listened hours\nthis month</string>
+    <string name="pages_read">Pages read\nthis month</string>
+
+    <string name="oops">Oops!</string>
+    <string name="try_again">Try Again</string>
+    <string name="something_wrong">We are sorry about something went wrong</string>
 </resources>

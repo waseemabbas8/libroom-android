@@ -1,9 +1,10 @@
 buildscript {
     ext {
-        compose_version = '1.6.0-alpha03'
-        nav_version = "2.7.0"
+        compose_version = '1.6.0-alpha05'
+        nav_version = "2.7.3"
         lifecycle_version = '2.6.1'
         hilt_version = '2.48'
+        coil_version = '2.4.0'
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

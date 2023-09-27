@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="horizontal_screen_padding">16dp</dimen>
-    <dimen name="vertical_screen_margin">35dp</dimen>]
+    <dimen name="vertical_screen_margin">25dp</dimen>
     <dimen name="bottom_screen_margin">16dp</dimen>
     <dimen name="section_title_margin_top">32dp</dimen>
     <dimen name="section_title_margin_bottom">20dp</dimen>

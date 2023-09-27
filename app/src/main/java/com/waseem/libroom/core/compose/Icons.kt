@@ -83,6 +83,28 @@ fun ArrowBackIcon(
 }
 
 @Composable
+fun HeadPhonesIcon(
+    modifier: Modifier = Modifier
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_headphones),
+        contentDescription = stringResource(id = R.string.arrow_back),
+        modifier = modifier
+    )
+}
+
+@Composable
+fun BookIcon(
+    modifier: Modifier = Modifier
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_book),
+        contentDescription = stringResource(id = R.string.arrow_back),
+        modifier = modifier
+    )
+}
+
+@Composable
 fun ImportExportIcon(
     modifier: Modifier = Modifier,
     tint: Color = defaultIconTint()
