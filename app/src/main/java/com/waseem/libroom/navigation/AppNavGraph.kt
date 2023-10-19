@@ -55,7 +55,7 @@ private fun NavGraphBuilder.addSearchRoute(navController: NavController) {
 }
 private fun NavGraphBuilder.showSearch(navController: NavController) {
     composable(route = LeafScreen.Search.route) {
-        SearchScreen()
+        SearchScreen(viewModel = hiltViewModel())
     }
 }
 //end of search navigation

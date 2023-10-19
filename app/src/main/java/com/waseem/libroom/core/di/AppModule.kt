@@ -2,12 +2,10 @@ package com.waseem.libroom.core.di
 
 import com.waseem.libroom.feature.author.data.AuthorRepositoryImpl
 import com.waseem.libroom.feature.author.domain.AuthorRepository
-import com.waseem.libroom.feature.author.domain.GetTopAuthors
-import com.waseem.libroom.feature.author.domain.GetTopAuthorsImpl
 import com.waseem.libroom.feature.book.data.BookRepositoryImpl
 import com.waseem.libroom.feature.book.domain.BookRepository
-import com.waseem.libroom.feature.home.domain.GetHomeContent
-import com.waseem.libroom.feature.home.domain.GetHomeContentImpl
+import com.waseem.libroom.feature.category.data.CategoryRepositoryImpl
+import com.waseem.libroom.feature.category.domain.CategoryRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,12 +33,7 @@ object AppModule {
     }
 
     @Provides
-    fun provideGetHomeContent(bookRepository: BookRepository, dispatcher: CoroutineDispatcher): GetHomeContent {
-        return GetHomeContentImpl(bookRepository = bookRepository, dispatcher = dispatcher)
-    }
-
-    @Provides
-    fun provideGetTopAuthors(authorRepository: AuthorRepository, dispatcher: CoroutineDispatcher): GetTopAuthors {
-        return GetTopAuthorsImpl(authorRepository = authorRepository, dispatcher = dispatcher)
+    fun provideCategoryRepository(): CategoryRepository {
+        return CategoryRepositoryImpl()
     }
 }

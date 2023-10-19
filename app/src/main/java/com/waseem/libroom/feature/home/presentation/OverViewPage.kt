@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -145,36 +144,30 @@ private fun Popular(
     ) {
         //TODO: implement view all callback
     }
-    LazyColumn(
-        modifier = Modifier.height(200.dp),
-        userScrollEnabled = false,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
         items(popularBooks.size) {
             val book = popularBooks[it]
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.width(150.dp)
             ) {
                 AsyncImage(
                     model = book.cover,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .size(50.dp)
+                        .fillMaxWidth()
+                        .height(220.dp)
                         .clip(MaterialTheme.shapes.small),
                     placeholder = painterResource(id = R.drawable.cover_placeholder)
                 )
-                Spacer(modifier = Modifier.width(10.dp))
-                Column {
-                    Text(
-                        text = book.title,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "By ${book.author}", style = MaterialTheme.typography.bodyMedium)
-                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(text = book.title, style = MaterialTheme.typography.titleMedium, maxLines = 1)
+                Text(text = book.author, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
+    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.bottom_screen_margin)))
 }
