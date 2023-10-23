@@ -9,4 +9,6 @@ interface BookRepository {
     suspend fun getRecentReads(): SResult<List<Book>>
 
     suspend fun getHomeContent(): SResult<HomeContent>
+
+    suspend fun getFavoritesByUserId(userId: String): SResult<List<Book>>
 }

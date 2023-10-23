@@ -88,4 +88,46 @@ class BookRepositoryImpl : BookRepository {
         )
         return SResult.success(HomeContent(recentReads, popular))
     }
+
+    override suspend fun getFavoritesByUserId(userId: String): SResult<List<Book>> {
+        val books = listOf(
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "Surrendered Single",
+                authorName = "Laura Doyle",
+                cover = "https://covers.openlibrary.org/b/id/471953-L.jpg"
+            ),
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "The River Devil",
+                authorName = "Diane Whiteside",
+                cover = "https://covers.openlibrary.org/b/id/505653-M.jpg"
+            ),
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "Koralina",
+                authorName = "Neil Gaiman",
+                cover = "https://covers.openlibrary.org/b/id/12634691-L.jpg"
+            ),
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "Fifty Shades of Grey",
+                authorName = "E. L. James",
+                cover = "https://covers.openlibrary.org/b/id/10740111-L.jpg"
+            ),
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "Court of Mist and Fury",
+                authorName = "Sarah J. Maas",
+                cover = "https://covers.openlibrary.org/b/id/14416194-L.jpg"
+            ),
+            Book(
+                id = UUID.randomUUID().toString(),
+                title = "Fourth Wing",
+                authorName = "Rebecca Yarros",
+                cover = "https://covers.openlibrary.org/b/id/14407898-L.jpg"
+            ),
+        )
+        return SResult.success(books)
+    }
 }

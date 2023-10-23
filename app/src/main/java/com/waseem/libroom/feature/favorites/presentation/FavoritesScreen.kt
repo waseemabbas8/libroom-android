@@ -1,6 +1,5 @@
 package com.waseem.libroom.feature.favorites.presentation
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,12 +11,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,16 +29,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.ImportExportIcon
 import com.waseem.libroom.core.compose.ScreenTitle
 import com.waseem.libroom.core.compose.SearchBox
 import com.waseem.libroom.core.compose.SortIcon
+import com.waseem.libroom.core.mvi.collectState
 import com.waseem.libroom.core.ui.ThemedPreview
 import com.waseem.libroom.core.ui.theme.LightColors
+import com.waseem.libroom.feature.home.presentation.BooksListUiState
 
 @Composable
-fun FavoritesScreen() {
+fun FavoritesScreen(
+    viewModel: FavoritesViewModel
+) {
+    val state by viewModel.collectState()
+
     Scaffold {
         val columnCount = 3
         LazyVerticalGrid(
@@ -62,25 +72,14 @@ fun FavoritesScreen() {
                     SortingView()
                 }
             }
-            items(6) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.book_cover),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.aspectRatio(0.7f).clip(MaterialTheme.shapes.small)
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Animal Farm",
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1
-                    )
-                    Text(
-                        text = "George Orwell",
-                        style = MaterialTheme.typography.bodyMedium,
-                        maxLines = 1
-                    )
+            when(state) {
+                FavoritesState.DefaultState -> {}
+                FavoritesState.ErrorState -> {}
+                is FavoritesState.FavoriteBooksState -> {
+                    booksGrid((state as FavoritesState.FavoriteBooksState).uiState.favoriteBooks)
+                }
+                FavoritesState.LoadingState -> {
+                    item { CircularProgressIndicator() }
                 }
             }
         }
@@ -106,10 +105,38 @@ private fun SortingView() {
     }
 }
 
+private fun LazyGridScope.booksGrid(favoriteBooks: List<BooksListUiState>) {
+    items(favoriteBooks.size) {
+        val book = favoriteBooks[it]
+        Column {
+            AsyncImage(
+                model = book.cover,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .aspectRatio(0.7f)
+                    .clip(MaterialTheme.shapes.small),
+                placeholder = painterResource(id = R.drawable.cover_placeholder)
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = book.title,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1
+            )
+            Text(
+                text = book.author,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 1
+            )
+        }
+    }
+}
+
 @Preview
 @Composable
 private fun previewHome() {
     ThemedPreview {
-        FavoritesScreen()
+        FavoritesScreen(viewModel = viewModel())
     }
 }

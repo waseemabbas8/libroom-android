@@ -71,7 +71,7 @@ private fun NavGraphBuilder.addFavoritesRoute(navController: NavController) {
 }
 private fun NavGraphBuilder.showFavorites(navController: NavController) {
     composable(route = LeafScreen.Favorites.route) {
-        FavoritesScreen()
+        FavoritesScreen(viewModel = hiltViewModel())
     }
 }
 //end of favorites navigation
