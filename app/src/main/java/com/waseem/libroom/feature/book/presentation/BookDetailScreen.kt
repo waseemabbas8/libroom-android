@@ -26,6 +26,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -48,6 +51,9 @@ import com.waseem.libroom.core.compose.TonalButton
 fun BookDetailScreen(
     navigateUp: () -> Unit
 ) {
+    val scope = rememberCoroutineScope()
+    val showBottomSheet = remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -63,7 +69,7 @@ fun BookDetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* do something */ }) {
+                    IconButton(onClick = { showBottomSheet.value = true }) {
                         Icon(
                             imageVector = Icons.Rounded.MoreVert,
                             contentDescription = "Actions"
@@ -73,6 +79,9 @@ fun BookDetailScreen(
             )
         }
     ) {
+        if (showBottomSheet.value) {
+            ChaptersBottomSheet(showBottomSheet = showBottomSheet, coroutineScope = scope)
+        }
         Column(
             modifier = Modifier
                 .padding(it)
@@ -198,12 +207,14 @@ private fun ColumnScope.Synopsis() {
     BottomGradientText(text = stringResource(id = R.string.lorem_text))
     Row {
         TonalButton(
-            content = { BookMarkIcon() },
+            onClick = {  },
             modifier = Modifier
                 .widthIn(min = 32.dp)
                 .padding(end = 8.dp),
             contentPadding = PaddingValues(horizontal = 8.dp)
-        ) { /*TODO*/ }
+        ) {
+            BookMarkIcon()
+        }
         FilledButton(
             modifier = Modifier
                 .fillMaxWidth()

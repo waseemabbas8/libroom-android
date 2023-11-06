@@ -24,6 +24,8 @@
     <string name="reads">Reads</string>
     <string name="pages">Pages</string>
     <string name="synopsis">Synopsis</string>
+    <string name="chapters">Chapters</string>
+    <string name="tap_chapter">Tap on a chapter to start reading.</string>
 
     <string name="oops">Oops!</string>
     <string name="try_again">Try Again</string>

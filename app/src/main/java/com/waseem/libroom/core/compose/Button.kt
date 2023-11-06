@@ -35,8 +35,8 @@ fun FilledButton(
 fun TonalButton(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
-    content: @Composable () -> Unit,
     onClick: () -> Unit,
+    content: @Composable () -> Unit,
 ) = FilledTonalButton(
     modifier = modifier,
     contentPadding = contentPadding,
@@ -57,15 +57,15 @@ private fun previewButtons() {
             FilledButton(text = "Filled Button") {
 
             }
-            TonalButton(content = { Text(text = "Filled Tonal Button") }) {
-
+            TonalButton(onClick = {  }) {
+                Text(text = "Filled Tonal Button")
             }
             TonalButton(
-                content = { BookMarkIcon() },
+                onClick = {  },
                 modifier = Modifier.widthIn(min = 32.dp),
                 contentPadding = PaddingValues(horizontal = 8.dp)
             ) {
-
+                BookMarkIcon()
             }
         }
     }
