@@ -23,12 +23,21 @@ import com.waseem.libroom.core.compose.ErrorUi
 import com.waseem.libroom.core.compose.ScreenTitle
 import com.waseem.libroom.core.compose.SizzleTab
 import com.waseem.libroom.core.compose.TabIndicator
+import com.waseem.libroom.core.mvi.collectEvents
 import com.waseem.libroom.core.mvi.collectState
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel,
+    onShowBookDetail: (bookId: String) -> Unit
 ) {
+    viewModel.collectEvents {
+        when(it) {
+            is HomeEvent.NavigateToBookDetail -> onShowBookDetail(it.bookId)
+            HomeEvent.NavigateToBooksList -> TODO()
+        }
+    }
+
     val state by viewModel.collectState()
 
     Scaffold {
@@ -59,7 +68,12 @@ fun HomeScreen(
                     }
                 }
                 is HomeState.HomeContentState -> {
-                    OverViewPage(homeUiState = (state as HomeState.HomeContentState).uiState)
+                    OverViewPage(
+                        homeUiState = (state as HomeState.HomeContentState).uiState,
+                        onBookItemClick = {bookId ->
+                            viewModel.action(HomeAction.BookItemClicked(bookId = bookId))
+                        }
+                    )
                 }
             }
         }
@@ -88,7 +102,7 @@ private fun HomeTabs(state: HomeState.HomeContentState) {
             )
         }
     }
-    if (tabIndex.intValue == 0) {
-        OverViewPage(homeUiState = state.uiState)
-    }
+//    if (tabIndex.intValue == 0) {
+//        OverViewPage(homeUiState = state.uiState)
+//    }
 }

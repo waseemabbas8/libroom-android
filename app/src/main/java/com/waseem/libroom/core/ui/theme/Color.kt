@@ -15,14 +15,17 @@ val yellowLight = Color(0xFFfff4d8)
 val redLight = Color(0xFFffdbd8)
 
 object LightColors {
+    val textGrey = Color(0xFF8f929a)
     val background = Color(0xFFfffbff)
     val primary = Color(0xFFfebd38)
-    val primaryContainer = Color(0xFFffdad8)
+    val primaryContainer = Color(0xFFF1F1F1)
+    val onPrimaryContainer = textGrey
     val secondary = Color(0xFF140e27)
+    val secondaryContainer = Color(0xFFF2F5F7)
+    val onSecondaryContainer = Color(0xFFF2F5F7)
     val tertiary = Color(0xFF745a2f)
     val tertiaryContainer = Color(0xFFffdeab)
     val surface = background
     val surfaceVariant = Color(0xFFf4dddc)
     val outline = Color(0xFF857372)
-    val textGrey = Color(0xFF8f929a)
 }

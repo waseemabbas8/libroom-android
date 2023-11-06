@@ -27,6 +27,9 @@ class HomeViewModel @Inject constructor(
         return when(this) {
             HomeAction.Load -> loadHomeContent()
             HomeAction.ViewAllClicked -> TODO()
+            is HomeAction.BookItemClicked -> emitEvent(
+                event = HomeEvent.NavigateToBookDetail(bookId = bookId)
+            )
         }
     }
 

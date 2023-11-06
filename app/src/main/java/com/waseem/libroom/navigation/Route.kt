@@ -13,4 +13,7 @@ sealed class LeafScreen(val route: String) {
     object Favorites : LeafScreen("favorites")
     object Profile : LeafScreen("profile")
     object BookReader : LeafScreen("book_reader")
+    object BookDetail : LeafScreen("book/{bookId}") {
+        fun createRoot(bookId: String) = "book/$bookId"
+    }
 }

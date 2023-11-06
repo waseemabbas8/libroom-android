@@ -130,6 +130,19 @@ fun SortIcon(
     )
 }
 
+@Composable
+fun BookMarkIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_bookmark),
+        contentDescription = "Book mark",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
 @OptIn(ExperimentalLayoutApi::class)
 @Preview
 @Composable
@@ -142,6 +155,7 @@ fun previewIcons() {
             ProfileIcon()
             ImportExportIcon()
             SortIcon()
+            BookMarkIcon()
         }
     }
 }

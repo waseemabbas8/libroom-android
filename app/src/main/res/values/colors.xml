@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text_filed_background">#F2F5F7</color>
     <color name="green_200">#e5ffd8</color>
+    <color name="book_cover_background">#F1F1F1</color>
 </resources>

@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.waseem.libroom.feature.book.presentation.BookDetailScreen
 import com.waseem.libroom.feature.favorites.presentation.FavoritesScreen
 import com.waseem.libroom.feature.home.presentation.HomeScreen
 import com.waseem.libroom.feature.profile.presentation.ProfileScreen
@@ -35,11 +36,17 @@ private fun NavGraphBuilder.addHomeRoute(navController: NavController) {
         startDestination = LeafScreen.Home.route
     ) {
         showHome(navController)
+        showBookDetail(navController)
     }
 }
 private fun NavGraphBuilder.showHome(navController: NavController) {
     composable(route = LeafScreen.Home.route) {
-        HomeScreen(viewModel = hiltViewModel())
+        HomeScreen(
+            viewModel = hiltViewModel(),
+            onShowBookDetail = {
+                navController.navigate(route = LeafScreen.BookDetail.createRoot(bookId = it))
+            }
+        )
     }
 }
 //end of home navigation
@@ -91,3 +98,11 @@ private fun NavGraphBuilder.showProfile(navController: NavController) {
     }
 }
 //end of profile navigation
+
+private fun NavGraphBuilder.showBookDetail(navController: NavController) {
+    composable(route = LeafScreen.BookDetail.route) {
+        BookDetailScreen(
+            navigateUp = { navController.navigateUp() }
+        )
+    }
+}

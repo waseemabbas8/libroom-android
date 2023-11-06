@@ -1,6 +1,7 @@
 package com.waseem.libroom.feature.home.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,10 +38,11 @@ import com.waseem.libroom.core.ui.theme.LightColors
 
 @Composable
 fun OverViewPage(
-    homeUiState: HomeUiState
+    homeUiState: HomeUiState,
+    onBookItemClick: (bookId: String) -> Unit
 ) {
     Goals()
-    RecentReads(recentReads = homeUiState.recentReads)
+    RecentReads(recentReads = homeUiState.recentReads, onBookItemClick = onBookItemClick)
     Popular(popularBooks = homeUiState.popularBooks)
 }
 
@@ -95,7 +97,8 @@ private fun Goals() {
 
 @Composable
 private fun RecentReads(
-    recentReads: List<BooksListUiState>
+    recentReads: List<BooksListUiState>,
+    onBookItemClick: (bookId: String) -> Unit
 ) {
     SectionTitle(
         title = stringResource(id = R.string.recent_reads),
@@ -113,6 +116,9 @@ private fun RecentReads(
             val book = recentReads[it]
             Column(
                 modifier = Modifier.width(150.dp)
+                    .clickable {
+                        onBookItemClick(book.id)
+                    }
             ) {
                 AsyncImage(
                     model = book.cover,

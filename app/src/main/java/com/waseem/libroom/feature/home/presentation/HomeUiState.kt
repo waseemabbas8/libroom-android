@@ -9,6 +9,7 @@ data class HomeUiState (
 )
 
 data class BooksListUiState(
+    val id: String,
     val title: String,
     val author: String,
     val cover: String
@@ -20,6 +21,7 @@ fun HomeContent.toUiState(): HomeUiState = HomeUiState(
 )
 
 fun Book.toBooksListUiState(): BooksListUiState = BooksListUiState(
+    id = id,
     title = title,
     author = authorName,
     cover = cover

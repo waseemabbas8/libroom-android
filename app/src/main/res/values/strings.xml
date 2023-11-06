@@ -21,8 +21,17 @@
     <string name="today_reading">Today\'s Reading</string>
     <string name="listened_hours">Listened hours\nthis month</string>
     <string name="pages_read">Pages read\nthis month</string>
+    <string name="reads">Reads</string>
+    <string name="pages">Pages</string>
+    <string name="synopsis">Synopsis</string>
 
     <string name="oops">Oops!</string>
     <string name="try_again">Try Again</string>
     <string name="something_wrong">We are sorry about something went wrong</string>
+
+<!--    todo: delete it in feature-->
+    <string name="lorem_text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </string>
 </resources>

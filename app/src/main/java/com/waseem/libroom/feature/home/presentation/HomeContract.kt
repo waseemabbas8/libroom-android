@@ -10,6 +10,7 @@ import javax.inject.Inject
 sealed class HomeAction : MviAction {
     object Load : HomeAction()
     object ViewAllClicked : HomeAction()
+    data class BookItemClicked(val bookId: String) : HomeAction()
 }
 
 sealed class HomeResult : MviResult {
@@ -18,8 +19,9 @@ sealed class HomeResult : MviResult {
     object Failure : HomeResult()
 }
 
-sealed class HomeEvent : MviEvent {
+sealed class HomeEvent : MviEvent, HomeResult() {
     object NavigateToBooksList : HomeEvent()
+    data class NavigateToBookDetail(val bookId: String): HomeEvent()
 }
 
 sealed class HomeState : MviViewState {
@@ -51,6 +53,7 @@ class HomeReducer @Inject constructor() : MviStateReducer<HomeState, HomeResult>
             HomeResult.Loading -> HomeState.LoadingState
             is HomeResult.HomeContent -> HomeState.HomeContentState(uiState = result.homeUiState)
             HomeResult.Failure -> HomeState.ErrorState
+            else -> throw IllegalStateException("unsupported")
         }
     }
 
