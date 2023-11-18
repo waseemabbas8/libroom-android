@@ -108,6 +108,8 @@ fun SearchScreen(
 private fun Authors(
     authors: List<AuthorUiState>
 ) {
+
+
     SectionTitle(
         title = stringResource(id = R.string.top_authors),
         modifier = Modifier.padding(
