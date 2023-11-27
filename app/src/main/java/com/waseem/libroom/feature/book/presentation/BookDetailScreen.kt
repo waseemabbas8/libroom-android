@@ -45,7 +45,8 @@ import com.waseem.libroom.core.compose.Toolbar
 
 @Composable
 fun BookDetailScreen(
-    navigateUp: () -> Unit
+    navigateUp: () -> Unit,
+    openReader: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val showBottomSheet = remember { mutableStateOf(false) }
@@ -117,7 +118,7 @@ fun BookDetailScreen(
                     )
                 }
             }
-            Synopsis()
+            Synopsis(openReader = openReader)
         }
     }
 }
@@ -178,7 +179,9 @@ private fun BookCover() {
 }
 
 @Composable
-private fun ColumnScope.Synopsis() {
+private fun ColumnScope.Synopsis(
+    openReader: () -> Unit
+) {
     Text(
         text = stringResource(id = R.string.synopsis),
         style = MaterialTheme.typography.titleMedium,
@@ -201,7 +204,7 @@ private fun ColumnScope.Synopsis() {
         FilledButton(
             modifier = Modifier.fillMaxWidth(),
             text = "Continue Reading",
-            onClick = { /*TODO*/ },
+            onClick = openReader,
         )
     }
 }

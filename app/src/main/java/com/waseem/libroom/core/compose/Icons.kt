@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -84,12 +85,14 @@ fun ArrowBackIcon(
 
 @Composable
 fun HeadPhonesIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    tint: Color = LocalContentColor.current,
 ) {
     Icon(
         painter = painterResource(id = R.drawable.ic_headphones),
         contentDescription = stringResource(id = R.string.arrow_back),
-        modifier = modifier
+        modifier = modifier,
+        tint = tint,
     )
 }
 
@@ -138,6 +141,45 @@ fun BookMarkIcon(
     Icon(
         painter = painterResource(id = R.drawable.ic_bookmark),
         contentDescription = "Book mark",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun LightModeOutlinedIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_light_mode_outlined),
+        contentDescription = "Light Mode",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun LightModeFilledIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_light_mode_filled),
+        contentDescription = "Dark Mode",
+        tint = tint,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun TextFormatIcon(
+    modifier: Modifier = Modifier,
+    tint: Color = defaultIconTint()
+) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_text_format),
+        contentDescription = "Text Format",
         tint = tint,
         modifier = modifier
     )

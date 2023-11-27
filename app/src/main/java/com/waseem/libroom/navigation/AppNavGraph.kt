@@ -12,6 +12,7 @@ import com.waseem.libroom.feature.book.presentation.BookDetailScreen
 import com.waseem.libroom.feature.favorites.presentation.FavoritesScreen
 import com.waseem.libroom.feature.home.presentation.HomeScreen
 import com.waseem.libroom.feature.profile.presentation.ProfileScreen
+import com.waseem.libroom.feature.reader.presentation.BookReaderScreen
 import com.waseem.libroom.feature.search.presentation.SearchScreen
 
 @Composable
@@ -26,6 +27,7 @@ fun AppNavGraph(
         addSearchRoute(navController)
         addFavoritesRoute(navController)
         addProfileRoute(navController)
+        addBookRoute(navController)
     }
 }
 
@@ -36,7 +38,6 @@ private fun NavGraphBuilder.addHomeRoute(navController: NavController) {
         startDestination = LeafScreen.Home.route
     ) {
         showHome(navController)
-        showBookDetail(navController)
     }
 }
 private fun NavGraphBuilder.showHome(navController: NavController) {
@@ -99,9 +100,31 @@ private fun NavGraphBuilder.showProfile(navController: NavController) {
 }
 //end of profile navigation
 
+//book navigation
+private fun NavGraphBuilder.addBookRoute(navController: NavController) {
+    navigation(
+        route = RootScreen.Book.route,
+        startDestination = LeafScreen.BookDetail.route
+    ) {
+        showBookDetail(navController)
+        showBookReader(navController)
+    }
+}
+
 private fun NavGraphBuilder.showBookDetail(navController: NavController) {
     composable(route = LeafScreen.BookDetail.route) {
         BookDetailScreen(
+            navigateUp = { navController.navigateUp() },
+            openReader = {
+                navController.navigate(route = LeafScreen.BookReader.route)
+            }
+        )
+    }
+}
+
+private fun NavGraphBuilder.showBookReader(navController: NavController) {
+    composable(route = LeafScreen.BookReader.route) {
+        BookReaderScreen(
             navigateUp = { navController.navigateUp() }
         )
     }
