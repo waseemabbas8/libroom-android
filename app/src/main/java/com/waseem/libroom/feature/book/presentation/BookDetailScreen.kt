@@ -15,15 +15,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
-import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -46,7 +40,6 @@ import com.waseem.libroom.core.compose.BookMarkIcon
 import com.waseem.libroom.core.compose.FilledButton
 import com.waseem.libroom.core.compose.TonalButton
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookDetailScreen(
     navigateUp: () -> Unit
@@ -54,38 +47,19 @@ fun BookDetailScreen(
     val scope = rememberCoroutineScope()
     val showBottomSheet = remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text("Small Top App Bar", style = MaterialTheme.typography.titleMedium)
-                },
-                navigationIcon = {
-                    IconButton(onClick = navigateUp) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
-                            contentDescription = "Go back"
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { showBottomSheet.value = true }) {
-                        Icon(
-                            imageVector = Icons.Rounded.MoreVert,
-                            contentDescription = "Actions"
-                        )
-                    }
-                }
-            )
-        }
-    ) {
-        if (showBottomSheet.value) {
-            ChaptersBottomSheet(showBottomSheet = showBottomSheet, coroutineScope = scope)
-        }
+    if (showBottomSheet.value) {
+        ChaptersBottomSheet(showBottomSheet = showBottomSheet, coroutineScope = scope)
+    }
+
+    Column {
+        //using custom toolbar instead of Scaffold topBar because of the extra top padding
+        BookDetailToolbar(
+            title = "Book Title",
+            navigateUp = navigateUp,
+            onMenuIconClick = { showBottomSheet.value = true }
+        )
         Column(
-            modifier = Modifier
-                .padding(it)
-                .padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding))
+            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding))
         ) {
             BookCover()
             Row(
@@ -216,9 +190,7 @@ private fun ColumnScope.Synopsis() {
             BookMarkIcon()
         }
         FilledButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = dimensionResource(id = R.dimen.bottom_screen_margin)),
+            modifier = Modifier.fillMaxWidth(),
             text = "Continue Reading",
             onClick = { /*TODO*/ },
         )

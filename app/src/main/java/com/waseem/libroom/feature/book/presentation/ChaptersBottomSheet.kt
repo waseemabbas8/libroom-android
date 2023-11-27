@@ -3,6 +3,8 @@ package com.waseem.libroom.feature.book.presentation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -11,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,7 +45,8 @@ fun ChaptersBottomSheet(
         onDismissRequest = {
             showBottomSheet.value = false
         },
-        sheetState = sheetState
+        sheetState = sheetState,
+        windowInsets = WindowInsets(0.dp)
     ) {
         // Sheet content
         Row(
@@ -76,7 +80,6 @@ fun ChaptersBottomSheet(
         //chapters grid
         LazyVerticalGrid(
             columns = GridCells.Fixed(5),
-//            modifier = Modifier.padding(it),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
             contentPadding = PaddingValues(
@@ -98,8 +101,10 @@ fun ChaptersBottomSheet(
             text = stringResource(id = R.string.tap_chapter),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(
-                vertical = dimensionResource(id = R.dimen.vertical_screen_margin),
-                horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
+                top = dimensionResource(id = R.dimen.bottom_screen_margin),
+                bottom = BottomSheetDefaults.windowInsets.asPaddingValues().calculateBottomPadding() + dimensionResource(id = R.dimen.bottom_screen_margin),
+                start = dimensionResource(id = R.dimen.horizontal_screen_padding),
+                end = dimensionResource(id = R.dimen.horizontal_screen_padding)
             )
         )
     }

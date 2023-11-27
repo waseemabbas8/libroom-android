@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,59 +46,56 @@ fun SearchScreen(
 ) {
     val state by viewModel.collectState()
 
-    Scaffold {
-        val columnCount = 2
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(columnCount),
-            modifier = Modifier.padding(it),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(
-                bottom = dimensionResource(id = R.dimen.bottom_screen_margin)
-            )
-        ) {
-            item(span = { GridItemSpan(columnCount) }) {
-                Column {
-                    ScreenTitle(
-                        title = stringResource(id = R.string.search),
-                        modifier = Modifier.padding(
-                            horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
-                        )
+    val columnCount = 2
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(columnCount),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(
+            bottom = dimensionResource(id = R.dimen.bottom_screen_margin)
+        )
+    ) {
+        item(span = { GridItemSpan(columnCount) }) {
+            Column {
+                ScreenTitle(
+                    title = stringResource(id = R.string.search),
+                    modifier = Modifier.padding(
+                        horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    SearchBox(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)))
-                    when(state) {
-                        is SearchState.SearchByState -> {
-                            val topAuthors = (state as SearchState.SearchByState).uiState.topAuthors
-                            if (topAuthors.isNotEmpty()) {
-                                Authors(authors = topAuthors)
-                            }
-                            val topCategories = (state as SearchState.SearchByState).uiState.topCategories
-                            if (topCategories.isNotEmpty()) {
-                                SectionTitle(
-                                    title = stringResource(id = R.string.top_categories),
-                                    modifier = Modifier.padding(bottom = 12.dp)
-                                ) {
-                                    //TODO: implement view all callback
-                                }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                SearchBox(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)))
+                when(state) {
+                    is SearchState.SearchByState -> {
+                        val topAuthors = (state as SearchState.SearchByState).uiState.topAuthors
+                        if (topAuthors.isNotEmpty()) {
+                            Authors(authors = topAuthors)
+                        }
+                        val topCategories = (state as SearchState.SearchByState).uiState.topCategories
+                        if (topCategories.isNotEmpty()) {
+                            SectionTitle(
+                                title = stringResource(id = R.string.top_categories),
+                                modifier = Modifier.padding(bottom = 12.dp)
+                            ) {
+                                //TODO: implement view all callback
                             }
                         }
-                        else -> {
-                            Text(text = "$state")
-                        }
+                    }
+                    else -> {
+                        Text(text = "$state")
                     }
                 }
             }
+        }
 
-            when(state) {
-                is SearchState.SearchByState -> {
-                    val topCategories = (state as SearchState.SearchByState).uiState.topCategories
-                    if (topCategories.isNotEmpty()) {
-                        categoriesItems(columnCount = columnCount, categories = topCategories)
-                    }
+        when(state) {
+            is SearchState.SearchByState -> {
+                val topCategories = (state as SearchState.SearchByState).uiState.topCategories
+                if (topCategories.isNotEmpty()) {
+                    categoriesItems(columnCount = columnCount, categories = topCategories)
                 }
-                else -> {}
             }
+            else -> {}
         }
     }
 }
@@ -108,6 +104,8 @@ fun SearchScreen(
 private fun Authors(
     authors: List<AuthorUiState>
 ) {
+
+
     SectionTitle(
         title = stringResource(id = R.string.top_authors),
         modifier = Modifier.padding(

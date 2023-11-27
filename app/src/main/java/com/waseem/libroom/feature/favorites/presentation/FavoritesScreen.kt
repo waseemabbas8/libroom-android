@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,40 +46,37 @@ fun FavoritesScreen(
 ) {
     val state by viewModel.collectState()
 
-    Scaffold {
-        val columnCount = 3
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(columnCount),
-            modifier = Modifier.padding(it),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            contentPadding = PaddingValues(
-                start = dimensionResource(id = R.dimen.horizontal_screen_padding),
-                end = dimensionResource(id = R.dimen.horizontal_screen_padding),
-                bottom = dimensionResource(id = R.dimen.bottom_screen_margin)
-            )
-        ) {
-            item(span = { GridItemSpan(columnCount) }) {
-                Column {
-                    ScreenTitle(title = stringResource(id = R.string.my_bookshelf))
-                    SearchBox(
-                        modifier = Modifier.padding(
-                            top = 8.dp,
-                            bottom = dimensionResource(id = R.dimen.section_title_margin_top)
-                        )
+    val columnCount = 3
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(columnCount),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        contentPadding = PaddingValues(
+            start = dimensionResource(id = R.dimen.horizontal_screen_padding),
+            end = dimensionResource(id = R.dimen.horizontal_screen_padding),
+            bottom = dimensionResource(id = R.dimen.bottom_screen_margin)
+        )
+    ) {
+        item(span = { GridItemSpan(columnCount) }) {
+            Column {
+                ScreenTitle(title = stringResource(id = R.string.my_bookshelf))
+                SearchBox(
+                    modifier = Modifier.padding(
+                        top = 8.dp,
+                        bottom = dimensionResource(id = R.dimen.section_title_margin_top)
                     )
-                    SortingView()
-                }
+                )
+                SortingView()
             }
-            when(state) {
-                FavoritesState.DefaultState -> {}
-                FavoritesState.ErrorState -> {}
-                is FavoritesState.FavoriteBooksState -> {
-                    booksGrid((state as FavoritesState.FavoriteBooksState).uiState.favoriteBooks)
-                }
-                FavoritesState.LoadingState -> {
-                    item { CircularProgressIndicator() }
-                }
+        }
+        when(state) {
+            FavoritesState.DefaultState -> {}
+            FavoritesState.ErrorState -> {}
+            is FavoritesState.FavoriteBooksState -> {
+                booksGrid((state as FavoritesState.FavoriteBooksState).uiState.favoriteBooks)
+            }
+            FavoritesState.LoadingState -> {
+                item { CircularProgressIndicator() }
             }
         }
     }
@@ -135,7 +131,7 @@ private fun LazyGridScope.booksGrid(favoriteBooks: List<BooksListUiState>) {
 
 @Preview
 @Composable
-private fun previewHome() {
+private fun PreviewHome() {
     ThemedPreview {
         FavoritesScreen(viewModel = viewModel())
     }
