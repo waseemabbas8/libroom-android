@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,6 +41,7 @@ import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.BookMarkIcon
 import com.waseem.libroom.core.compose.FilledButton
 import com.waseem.libroom.core.compose.TonalButton
+import com.waseem.libroom.core.compose.Toolbar
 
 @Composable
 fun BookDetailScreen(
@@ -53,11 +56,17 @@ fun BookDetailScreen(
 
     Column {
         //using custom toolbar instead of Scaffold topBar because of the extra top padding
-        BookDetailToolbar(
+        Toolbar(
             title = "Book Title",
             navigateUp = navigateUp,
-            onMenuIconClick = { showBottomSheet.value = true }
-        )
+        ) {
+            IconButton(onClick = { showBottomSheet.value = true }) {
+                Icon(
+                    imageVector = Icons.Rounded.MoreVert,
+                    contentDescription = "Actions"
+                )
+            }
+        }
         Column(
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding))
         ) {

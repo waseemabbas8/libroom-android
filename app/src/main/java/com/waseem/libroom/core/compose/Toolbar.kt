@@ -1,4 +1,4 @@
-package com.waseem.libroom.feature.book.presentation
+package com.waseem.libroom.core.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -20,10 +20,10 @@ import com.waseem.libroom.R
 import com.waseem.libroom.core.ui.ThemedPreview
 
 @Composable
-fun BookDetailToolbar(
+fun Toolbar(
     title: String,
     navigateUp: () -> Unit,
-    onMenuIconClick: () -> Unit,
+    action: @Composable () -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -39,12 +39,7 @@ fun BookDetailToolbar(
             )
         }
         Text(title, style = MaterialTheme.typography.titleMedium)
-        IconButton(onClick = onMenuIconClick) {
-            Icon(
-                imageVector = Icons.Rounded.MoreVert,
-                contentDescription = "Actions"
-            )
-        }
+        action()
     }
 }
 
@@ -52,10 +47,17 @@ fun BookDetailToolbar(
 @Composable
 private fun PreviewToolbar() {
     ThemedPreview {
-        BookDetailToolbar(
+        Toolbar(
             title = "Book Title",
             navigateUp = {},
-            onMenuIconClick = {}
+            action = {
+                IconButton(onClick = {  }) {
+                    Icon(
+                        imageVector = Icons.Rounded.MoreVert,
+                        contentDescription = "Actions"
+                    )
+                }
+            }
         )
     }
 }
