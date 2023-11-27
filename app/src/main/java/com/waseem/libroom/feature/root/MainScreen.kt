@@ -71,6 +71,7 @@ private fun BottomNavBar(
     navController: NavController,
     currentSelectedScreen: RootScreen
 ) {
+    //reduce the bottom padding of the navigation bar
     NavigationBar {
         NavBarItem(
             selected = currentSelectedScreen == RootScreen.Home,

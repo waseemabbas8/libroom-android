@@ -1,7 +1,7 @@
 buildscript {
     ext {
         compose_version = '1.6.0-alpha05'
-        nav_version = "2.7.3"
+        nav_version = "2.7.5"
         lifecycle_version = '2.6.1'
         hilt_version = '2.48'
         coil_version = '2.4.0'

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,41 +39,38 @@ fun HomeScreen(
 
     val state by viewModel.collectState()
 
-    Scaffold {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(it)
-        ) {
-            ScreenTitle(
-                title = stringResource(id = R.string.discover_books),
-                modifier = Modifier.padding(
-                    horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
-                )
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
+        ScreenTitle(
+            title = stringResource(id = R.string.discover_books),
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
             )
-            when(state) {
-                HomeState.DefaultState -> {}
-                HomeState.LoadingState -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
+        )
+        when(state) {
+            HomeState.DefaultState -> {}
+            HomeState.LoadingState -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+            HomeState.ErrorState -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    ErrorUi {
+                        viewModel.action(HomeAction.Load)
                     }
                 }
-                HomeState.ErrorState -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        ErrorUi {
-                            viewModel.action(HomeAction.Load)
-                        }
+            }
+            is HomeState.HomeContentState -> {
+                OverViewPage(
+                    homeUiState = (state as HomeState.HomeContentState).uiState,
+                    onBookItemClick = {bookId ->
+                        viewModel.action(HomeAction.BookItemClicked(bookId = bookId))
                     }
-                }
-                is HomeState.HomeContentState -> {
-                    OverViewPage(
-                        homeUiState = (state as HomeState.HomeContentState).uiState,
-                        onBookItemClick = {bookId ->
-                            viewModel.action(HomeAction.BookItemClicked(bookId = bookId))
-                        }
-                    )
-                }
+                )
             }
         }
     }

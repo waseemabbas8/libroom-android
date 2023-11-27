@@ -22,7 +22,7 @@ fun ScreenTitle(
 ) {
     Text(
         text = title, style = MaterialTheme.typography.displaySmall,
-        modifier = modifier.padding(top = dimensionResource(id = (R.dimen.vertical_screen_margin)))
+        modifier = modifier
     )
 }
 
