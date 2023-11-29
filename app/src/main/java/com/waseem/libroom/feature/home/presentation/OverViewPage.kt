@@ -194,9 +194,12 @@ private fun BookItem(book: BooksListUiState, onBookItemClick: (bookId: String) -
         }
         Spacer(modifier = Modifier.height(10.dp))
         Text(text = book.title, style = MaterialTheme.typography.labelLarge, maxLines = 1)
-        Text(text = book.author, style = MaterialTheme.typography.labelSmall.copy(
-            color = MaterialTheme.colorScheme.outline,
-            fontWeight = FontWeight.Medium
-        ), maxLines = 1)
+        Text(
+            text = book.author, style = MaterialTheme.typography.labelSmall.copy(
+                color = MaterialTheme.colorScheme.outline,
+                fontWeight = FontWeight.Medium
+            ),
+            maxLines = 1
+        )
     }
 }
