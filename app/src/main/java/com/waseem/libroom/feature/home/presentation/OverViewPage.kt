@@ -33,7 +33,6 @@ import com.gowtham.ratingbar.RatingBarStyle
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.ElevatedTile
 import com.waseem.libroom.core.compose.SectionTitle
-import com.waseem.libroom.core.ui.theme.LightColors
 
 
 @Composable
@@ -65,7 +64,7 @@ fun ContinueReading() {
             style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.primary)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = "5 minutes left", style = MaterialTheme.typography.labelSmall.copy(color = LightColors.textGrey))
+        Text(text = "5 minutes left", style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.outline))
     }
     Spacer(modifier = Modifier.height(20.dp))
     ElevatedTile(

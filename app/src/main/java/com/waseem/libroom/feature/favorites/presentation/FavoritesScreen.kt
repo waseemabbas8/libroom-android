@@ -37,7 +37,6 @@ import com.waseem.libroom.core.compose.SearchBox
 import com.waseem.libroom.core.compose.SortIcon
 import com.waseem.libroom.core.mvi.collectState
 import com.waseem.libroom.core.ui.ThemedPreview
-import com.waseem.libroom.core.ui.theme.LightColors
 import com.waseem.libroom.feature.home.presentation.BooksListUiState
 
 @Composable
@@ -92,7 +91,7 @@ private fun SortingView() {
         Text(
             text = stringResource(id = R.string.recently_read),
             modifier = Modifier.weight(1f),
-            style = MaterialTheme.typography.titleMedium.copy(LightColors.textGrey)
+            style = MaterialTheme.typography.titleMedium.copy(MaterialTheme.colorScheme.outline)
         )
         IconButton(onClick = { /*TODO*/ }) {
             SortIcon()

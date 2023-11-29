@@ -3,7 +3,6 @@ package com.waseem.libroom.core.ui.theme
 import androidx.compose.ui.graphics.Color
 
 object LightColors {
-    val textGrey = Color(0xFF8f929a)
     val background = Color(0xFFFEFBFF)
     val onBackground = Color(0xFF1B1B1F)
     val primary = Color(0xFF005AC1)

@@ -35,7 +35,6 @@ import com.waseem.libroom.core.compose.ProfileIcon
 import com.waseem.libroom.core.compose.SearchIcon
 import com.waseem.libroom.core.compose.defaultIconTint
 import com.waseem.libroom.core.ui.ThemedPreview
-import com.waseem.libroom.core.ui.theme.LightColors
 import com.waseem.libroom.navigation.AppNavGraph
 import com.waseem.libroom.navigation.LeafScreen
 import com.waseem.libroom.navigation.RootScreen
@@ -121,7 +120,7 @@ private fun RowScope.NavBarItem(
         icon = icon,
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = Color.Black,
-            unselectedTextColor = LightColors.textGrey,
+            unselectedTextColor = MaterialTheme.colorScheme.outline,
             unselectedIconColor = defaultIconTint()
         )
     )
