@@ -15,10 +15,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.dp
-import com.waseem.libroom.core.ui.theme.LightColors
 
 @Composable
 fun SizzleTab(
@@ -29,8 +27,6 @@ fun SizzleTab(
     Tab(
         text = { Text(title) },
         selected = selected,
-        selectedContentColor = Color.Black,
-        unselectedContentColor = LightColors.textGrey,
         onClick = onClick
     )
 }

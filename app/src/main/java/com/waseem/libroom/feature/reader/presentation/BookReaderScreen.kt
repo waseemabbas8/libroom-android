@@ -35,7 +35,6 @@ import com.waseem.libroom.core.ui.ThemedPreview
 fun BookReaderScreen(
     navigateUp: () -> Unit
 ) {
-
     Column {
         Toolbar(title = "Chapter 1", navigateUp = navigateUp) {
             TonalButton(
@@ -81,13 +80,13 @@ private fun BottomBar() {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        IconButton(onClick = {  }) {
+        IconButton(onClick = { }) {
             HeadPhonesIcon(
                 modifier = Modifier.size(24.dp),
                 tint = defaultIconTint()
             )
         }
-        IconButton(onClick = {  }) {
+        IconButton(onClick = { }) {
             LightModeOutlinedIcon()
         }
         Text(
@@ -95,7 +94,7 @@ private fun BottomBar() {
             modifier = Modifier.widthIn(min = 100.dp),
             textAlign = TextAlign.Center,
         )
-        IconButton(onClick = {  }) {
+        IconButton(onClick = { }) {
             TextFormatIcon()
         }
         Text(

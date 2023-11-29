@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
@@ -66,19 +65,6 @@ fun ProfileIcon(
     Icon(
         imageVector = Icons.Outlined.Person,
         contentDescription = stringResource(id = R.string.profile),
-        modifier = modifier
-    )
-}
-
-@Composable
-fun ArrowBackIcon(
-    modifier: Modifier = Modifier,
-    tint: Color = defaultIconTint()
-) {
-    Icon(
-        imageVector = Icons.Rounded.ArrowBack,
-        contentDescription = stringResource(id = R.string.arrow_back),
-        tint = tint,
         modifier = modifier
     )
 }

@@ -16,7 +16,7 @@
     <string name="popular">Popular</string>
     <string name="top_authors">Top Authors</string>
     <string name="top_categories">Top Categories</string>
-    <string name="view_all">View All</string>
+    <string name="more">More</string>
     <string name="search_box_placeholder">Titles, authors, or topics</string>
     <string name="today_reading">Today\'s Reading</string>
     <string name="listened_hours">Listened hours\nthis month</string>

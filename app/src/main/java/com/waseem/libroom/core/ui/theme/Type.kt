@@ -104,12 +104,13 @@ val Typography = Typography(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
-        color = LightColors.textGrey,
+        color = LightColors.outline,
     ),
     bodySmall = baseTextStyle.copy(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
+        color = LightColors.outline,
     ),
 )

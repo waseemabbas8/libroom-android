@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -72,52 +73,7 @@ fun BookDetailScreen(
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding))
         ) {
             BookCover()
-            Row(
-                modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.vertical_screen_margin))
-                    .fillMaxWidth()
-                    .clip(MaterialTheme.shapes.small)
-                    .background(color = MaterialTheme.colorScheme.primaryContainer)
-                    .padding(vertical = dimensionResource(id = R.dimen.horizontal_screen_padding)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Star,
-                        contentDescription = "Rating",
-                        modifier = Modifier.size(18.dp),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                    Text(text = " 4.8", style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        text = "/5",
-                        style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onPrimaryContainer)
-                    )
-                }
-                Text(text = "|", color = MaterialTheme.colorScheme.onPrimaryContainer)
-                Row(
-                    verticalAlignment = Alignment.Bottom
-                ) {
-                    Text(text = "5.2k", style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        text = " Reads",
-                        style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onPrimaryContainer)
-                    )
-                }
-                Text(text = "|", color = MaterialTheme.colorScheme.onPrimaryContainer)
-                Row(
-                    verticalAlignment = Alignment.Bottom
-                ) {
-                    Text(text = "340", style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        text = " Pages",
-                        style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onPrimaryContainer)
-                    )
-                }
-            }
+            Stats()
             Synopsis(openReader = openReader)
         }
     }
@@ -128,40 +84,41 @@ private fun BookCover() {
     Box(
         modifier = Modifier.fillMaxWidth()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(155.dp)
-                .clip(MaterialTheme.shapes.medium)
-                .background(color = MaterialTheme.colorScheme.primaryContainer)
-                .padding(16.dp)
-                .align(alignment = Alignment.BottomEnd)
+        Card(
+            modifier = Modifier.align(alignment = Alignment.BottomEnd)
         ) {
-            Text(
-                text = "The River Devil And the Herry Potter",
-                maxLines = 2,
+            Column(
                 modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .fillMaxWidth(fraction = 0.5f),
-                style = MaterialTheme.typography.titleLarge,
-            )
-            Text(
-                text = "By Diane Whiteside",
-                modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .fillMaxWidth(fraction = 0.5f),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.60f)
+                    .fillMaxWidth()
+                    .height(155.dp)
+                    .padding(dimensionResource(id = R.dimen.horizontal_screen_padding))
+            ) {
+                Text(
+                    text = "The River Devil And the Herry Potter",
+                    maxLines = 2,
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .fillMaxWidth(fraction = 0.5f),
+                    style = MaterialTheme.typography.titleLarge,
                 )
-            )
-            Text(
-                text = "November 24, 2015",
-                modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .fillMaxWidth(fraction = 0.5f),
-                style = MaterialTheme.typography.bodyMedium
-            )
+                Text(
+                    text = "By Diane Whiteside",
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .fillMaxWidth(fraction = 0.5f),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.60f)
+                    )
+                )
+                Text(
+                    text = "November 24, 2015",
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .fillMaxWidth(fraction = 0.5f),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
         AsyncImage(
             model = "https://covers.openlibrary.org/b/id/505653-M.jpg",
@@ -175,6 +132,60 @@ private fun BookCover() {
                 .align(alignment = Alignment.TopEnd),
             placeholder = painterResource(id = R.drawable.cover_placeholder)
         )
+    }
+}
+
+@Composable
+private fun Stats() {
+    val valueText = @Composable { value: String ->
+        Text(text = value, style = MaterialTheme.typography.titleMedium)
+    }
+    val label = @Composable { label: String ->
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+        )
+    }
+    val divider = @Composable {
+        Text(text = "|", color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+
+    Row(
+        modifier = Modifier
+            .padding(top = dimensionResource(id = R.dimen.vertical_screen_margin))
+            .fillMaxWidth()
+            .clip(MaterialTheme.shapes.small)
+            .background(color = MaterialTheme.colorScheme.surfaceVariant)
+            .padding(vertical = dimensionResource(id = R.dimen.horizontal_screen_padding)),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Star,
+                contentDescription = "Rating",
+                modifier = Modifier.size(18.dp),
+                tint = MaterialTheme.colorScheme.primary,
+            )
+            valueText(" 4.8")
+            label("/5")
+        }
+        divider()
+        Row(
+            verticalAlignment = Alignment.Bottom
+        ) {
+            valueText("5.2k")
+            label("Reads")
+        }
+        divider()
+        Row(
+            verticalAlignment = Alignment.Bottom
+        ) {
+            valueText("340")
+            label("Pages")
+        }
     }
 }
 

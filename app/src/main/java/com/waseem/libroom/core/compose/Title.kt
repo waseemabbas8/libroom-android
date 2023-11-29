@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.waseem.libroom.R
-import com.waseem.libroom.core.ui.theme.LightColors
 
 @Composable
 fun ScreenTitle(
@@ -21,7 +21,7 @@ fun ScreenTitle(
     modifier: Modifier = Modifier
 ) {
     Text(
-        text = title, style = MaterialTheme.typography.displaySmall,
+        text = title, style = MaterialTheme.typography.headlineSmall,
         modifier = modifier
     )
 }
@@ -36,16 +36,17 @@ fun SectionTitle(
         modifier = modifier.fillMaxWidth()
             .padding(
                 start = dimensionResource(id = R.dimen.horizontal_screen_padding),
-                top = dimensionResource(id = R.dimen.section_title_margin_top)
+                top = dimensionResource(id = R.dimen.section_title_margin_top),
+                bottom = 12.dp,
             ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = title, style = MaterialTheme.typography.headlineSmall)
+        Text(text = title, style = MaterialTheme.typography.titleMedium)
         TextButton(onClick = onViewAllClick) {
             Text(
-                text = stringResource(id = R.string.view_all),
-                style = MaterialTheme.typography.titleMedium.copy(color = LightColors.textGrey)
+                text = stringResource(id = R.string.more),
+                style = MaterialTheme.typography.titleSmall
             )
         }
     }

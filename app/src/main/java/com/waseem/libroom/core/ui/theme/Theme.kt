@@ -16,27 +16,35 @@ private val _darkColorScheme = darkColorScheme(
 )
 
 private val _lightColorScheme = lightColorScheme(
-    background = LightColors.background,
     primary = LightColors.primary,
+    onPrimary = LightColors.onPrimary,
     primaryContainer =LightColors.primaryContainer,
     onPrimaryContainer = LightColors.onPrimaryContainer,
+    inversePrimary = LightColors.inversePrimary,
     secondary = LightColors.secondary,
+    onSecondary = LightColors.onSecondary,
     secondaryContainer = LightColors.secondaryContainer,
+    onSecondaryContainer = LightColors.onSecondaryContainer,
     tertiary = LightColors.tertiary,
+    onTertiary = LightColors.onTertiary,
     tertiaryContainer = LightColors.tertiaryContainer,
+    onTertiaryContainer = LightColors.onTertiaryContainer,
+    background = LightColors.background,
+    onBackground = LightColors.onBackground,
     surface = LightColors.surface,
+    onSurface = LightColors.onSurface,
     surfaceVariant = LightColors.surfaceVariant,
+    onSurfaceVariant = LightColors.onSurfaceVariant,
+    surfaceTint = LightColors.surfaceTint,
+    inverseSurface = LightColors.inverseSurface,
+    inverseOnSurface = LightColors.inverseOnSurface,
+    error = LightColors.error,
+    onError = LightColors.onError,
+    errorContainer = LightColors.errorContainer,
+    onErrorContainer = LightColors.onErrorContainer,
     outline = LightColors.outline,
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    outlineVariant = LightColors.outlineVariant,
+    scrim = LightColors.scrim
 )
 
 private val shapes = Shapes(
