@@ -5,8 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,10 +19,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,22 +30,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.BookMarkIcon
+import com.waseem.libroom.core.compose.Chip
 import com.waseem.libroom.core.compose.FilledButton
+import com.waseem.libroom.core.compose.OutlinedTile
+import com.waseem.libroom.core.compose.StarIcon
 import com.waseem.libroom.core.compose.TonalButton
 import com.waseem.libroom.core.compose.Toolbar
+import com.waseem.libroom.feature.book.presentation.compose.BookThumbnail
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun BookDetailScreen(
     navigateUp: () -> Unit,
@@ -59,7 +62,7 @@ fun BookDetailScreen(
     Column {
         //using custom toolbar instead of Scaffold topBar because of the extra top padding
         Toolbar(
-            title = "Book Title",
+            title = "Book Summary",
             navigateUp = navigateUp,
         ) {
             IconButton(onClick = { showBottomSheet.value = true }) {
@@ -73,6 +76,17 @@ fun BookDetailScreen(
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding))
         ) {
             BookCover()
+            FlowRow(
+                modifier = Modifier.padding(top = 20.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Chip(text = "Romance")
+                Chip(text = "Fiction")
+                Chip(text = "Fantasy")
+                Chip(text = "Adventure")
+                Chip(text = "Novel")
+            }
             Stats()
             Synopsis(openReader = openReader)
         }
@@ -81,57 +95,53 @@ fun BookDetailScreen(
 
 @Composable
 private fun BookCover() {
-    Box(
+    Row(
         modifier = Modifier.fillMaxWidth()
     ) {
-        Card(
-            modifier = Modifier.align(alignment = Alignment.BottomEnd)
+        BookThumbnail(
+            url = "https://covers.openlibrary.org/b/id/11238165-L.jpg",
+            modifier = Modifier
+                .width(112.dp)
+                .height(165.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(165.dp)
+                .padding(start = dimensionResource(id = R.dimen.horizontal_screen_padding))
         ) {
-            Column(
+            Text(
+                text = "The River Devil and Herry Potter",
+                maxLines = 2,
+                modifier = Modifier.padding(bottom = 8.dp),
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = "By Diane Whiteside",
+                modifier = Modifier.padding(bottom = 8.dp),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontWeight = FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.60f)
+                )
+            )
+            Text(
+                text = "November 24, 2015",
+                modifier = Modifier.padding(bottom = 16.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = "14 of 340 pages (60%)",
+                modifier = Modifier.padding(bottom = 8.dp),
+                style = MaterialTheme.typography.labelMedium
+            )
+            LinearProgressIndicator(
+                progress = { 0.25f },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(155.dp)
-                    .padding(dimensionResource(id = R.dimen.horizontal_screen_padding))
-            ) {
-                Text(
-                    text = "The River Devil And the Herry Potter",
-                    maxLines = 2,
-                    modifier = Modifier
-                        .padding(bottom = 8.dp)
-                        .fillMaxWidth(fraction = 0.5f),
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Text(
-                    text = "By Diane Whiteside",
-                    modifier = Modifier
-                        .padding(bottom = 8.dp)
-                        .fillMaxWidth(fraction = 0.5f),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.60f)
-                    )
-                )
-                Text(
-                    text = "November 24, 2015",
-                    modifier = Modifier
-                        .padding(bottom = 8.dp)
-                        .fillMaxWidth(fraction = 0.5f),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
+                    .padding(bottom = 4.dp)
+            )
         }
-        AsyncImage(
-            model = "https://covers.openlibrary.org/b/id/505653-M.jpg",
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .width(120.dp)
-                .height(170.dp)
-                .padding(end = 16.dp, bottom = 16.dp)
-                .clip(MaterialTheme.shapes.small)
-                .align(alignment = Alignment.TopEnd),
-            placeholder = painterResource(id = R.drawable.cover_placeholder)
-        )
     }
 }
 
@@ -143,50 +153,50 @@ private fun Stats() {
     val label = @Composable { label: String ->
         Text(
             text = label,
-            style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.outline
         )
     }
     val divider = @Composable {
-        Text(text = "|", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(text = "|", color = MaterialTheme.colorScheme.outline)
     }
 
-    Row(
+    OutlinedTile(
         modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.vertical_screen_margin))
-            .fillMaxWidth()
-            .clip(MaterialTheme.shapes.small)
-            .background(color = MaterialTheme.colorScheme.surfaceVariant)
-            .padding(vertical = dimensionResource(id = R.dimen.horizontal_screen_padding)),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+            .padding(top = dimensionResource(id = R.dimen.vertical_screen_margin)),
     ) {
         Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = dimensionResource(id = R.dimen.horizontal_screen_padding)),
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Icon(
-                imageVector = Icons.Rounded.Star,
-                contentDescription = "Rating",
-                modifier = Modifier.size(18.dp),
-                tint = MaterialTheme.colorScheme.primary,
-            )
-            valueText(" 4.8")
-            label("/5")
-        }
-        divider()
-        Row(
-            verticalAlignment = Alignment.Bottom
-        ) {
-            valueText("5.2k")
-            label("Reads")
-        }
-        divider()
-        Row(
-            verticalAlignment = Alignment.Bottom
-        ) {
-            valueText("340")
-            label("Pages")
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                StarIcon(modifier = Modifier.size(18.dp))
+                valueText(" 4.8")
+                label("/5")
+            }
+            divider()
+            Row(
+                verticalAlignment = Alignment.Bottom
+            ) {
+                valueText("5.2k")
+                label("Reads")
+            }
+            divider()
+            Row(
+                verticalAlignment = Alignment.Bottom
+            ) {
+                valueText("340")
+                label("Pages")
+            }
         }
     }
+
+
 }
 
 @Composable

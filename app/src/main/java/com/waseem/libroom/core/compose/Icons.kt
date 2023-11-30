@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -122,7 +123,7 @@ fun SortIcon(
 @Composable
 fun BookMarkIcon(
     modifier: Modifier = Modifier,
-    tint: Color = defaultIconTint()
+    tint: Color = MaterialTheme.colorScheme.onPrimaryContainer
 ) {
     Icon(
         painter = painterResource(id = R.drawable.ic_bookmark),
@@ -168,6 +169,18 @@ fun TextFormatIcon(
         contentDescription = "Text Format",
         tint = tint,
         modifier = modifier
+    )
+}
+
+@Composable
+fun StarIcon(
+    modifier: Modifier = Modifier,
+) {
+    Icon(
+        modifier = modifier,
+        painter = painterResource(id = R.drawable.ic_star_filled),
+        contentDescription = "Rating",
+        tint = Color(0xFFFFC819)
     )
 }
 

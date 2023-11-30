@@ -20,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +32,6 @@ import com.waseem.libroom.core.compose.FavoriteIcon
 import com.waseem.libroom.core.compose.HomeIcon
 import com.waseem.libroom.core.compose.ProfileIcon
 import com.waseem.libroom.core.compose.SearchIcon
-import com.waseem.libroom.core.compose.defaultIconTint
 import com.waseem.libroom.core.ui.ThemedPreview
 import com.waseem.libroom.navigation.AppNavGraph
 import com.waseem.libroom.navigation.LeafScreen
@@ -119,9 +117,9 @@ private fun RowScope.NavBarItem(
         alwaysShowLabel = false,
         icon = icon,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = Color.Black,
+            selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
             unselectedTextColor = MaterialTheme.colorScheme.outline,
-            unselectedIconColor = defaultIconTint()
+            unselectedIconColor = MaterialTheme.colorScheme.outline
         )
     )
 }

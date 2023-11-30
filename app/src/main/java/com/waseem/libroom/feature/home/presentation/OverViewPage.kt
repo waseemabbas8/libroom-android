@@ -33,6 +33,7 @@ import com.gowtham.ratingbar.RatingBarStyle
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.ElevatedTile
 import com.waseem.libroom.core.compose.SectionTitle
+import com.waseem.libroom.feature.book.presentation.compose.BookThumbnail
 
 
 @Composable
@@ -181,17 +182,10 @@ private fun BookItem(book: BooksListUiState, onBookItemClick: (bookId: String) -
                 onBookItemClick(book.id)
             }
     ) {
-        ElevatedTile {
-            AsyncImage(
-                model = book.cover,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(160.dp),
-                placeholder = painterResource(id = R.drawable.cover_placeholder)
-            )
-        }
+        BookThumbnail(
+            url = book.cover,
+            modifier = Modifier.fillMaxWidth().height(160.dp)
+        )
         Spacer(modifier = Modifier.height(10.dp))
         Text(text = book.title, style = MaterialTheme.typography.labelLarge, maxLines = 1)
         Text(
