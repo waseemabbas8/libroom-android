@@ -37,13 +37,17 @@ fun SectionTitle(
             .padding(
                 start = dimensionResource(id = R.dimen.horizontal_screen_padding),
                 top = dimensionResource(id = R.dimen.section_title_margin_top),
-                bottom = 10.dp,
+                bottom = 8.dp,
             ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = title, style = MaterialTheme.typography.titleMedium)
-        TextButton(onClick = onViewAllClick) {
+        TextButton(
+            onClick = onViewAllClick,
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.padding(end = 8.dp)
+        ) {
             Text(
                 text = stringResource(id = R.string.more),
                 style = MaterialTheme.typography.titleSmall

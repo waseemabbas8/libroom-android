@@ -1,42 +1,42 @@
 package com.waseem.libroom.feature.onboarding.presentation
 
-import android.app.Activity
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.view.ViewCompat
 import com.waseem.libroom.R
 import com.waseem.libroom.core.compose.FilledButton
+import com.waseem.libroom.core.ui.ThemedPreview
 
 @Composable
 fun OnboardingScreen() {
     val view = LocalView.current
     val backgroundColor = colorScheme.secondary
-    SideEffect {
-        (view.context as Activity).window.statusBarColor = backgroundColor.toArgb()
-        ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = true
-    }
     OnboardingContent(backgroundColor = backgroundColor)
 }
 
 @Composable
 fun OnboardingContent(backgroundColor: Color) {
-    Scaffold(
-        containerColor = backgroundColor
-    ) {
+    Scaffold {
         Box(
             modifier = Modifier
                 .padding(it)
@@ -81,5 +81,7 @@ fun OnboardingContent(backgroundColor: Color) {
 @Preview(device = Devices.PIXEL_4_XL)
 @Composable
 private fun Preview() {
-    OnboardingContent(backgroundColor = Color(0xFF140e27))
+    ThemedPreview {
+        OnboardingContent(backgroundColor = Color(0xFF140e27))
+    }
 }
