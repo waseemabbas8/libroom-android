@@ -17,6 +17,9 @@
     <string name="top_authors">Top Authors</string>
     <string name="top_categories">Top Categories</string>
     <string name="more">More</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
     <string name="search_box_placeholder">Titles, authors, or topics</string>
     <string name="today_reading">Today\'s Reading</string>
     <string name="listened_hours">Listened hours\nthis month</string>
@@ -36,4 +39,11 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </string>
+    <string name="login_screen_title">Login to your Account</string>
+    <string name="hint_email">your@email.com</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_success">Login Success</string>
+    <string name="retry_login">Retry Login</string>
+    <string name="forgot_password">Forget Password?</string>
 </resources>

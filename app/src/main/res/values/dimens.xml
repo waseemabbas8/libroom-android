@@ -8,4 +8,7 @@
     <dimen name="toolbar_bottom_margin">10dp</dimen>
     <dimen name="bottom_appbar_height">80dp</dimen>
     <dimen name="card_elevation">8dp</dimen>
+    <dimen name="onboarding_padding">32dp</dimen>
+    <dimen name="dots_padding">8dp</dimen>
+    <dimen name="field_margin_bottom">16dp</dimen>
 </resources>
