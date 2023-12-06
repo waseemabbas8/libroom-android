@@ -33,11 +33,12 @@ fun EditText(
         onValueChange = onValueChange,
         singleLine = true,
         keyboardOptions = keyboardOptions,
+        shape = MaterialTheme.shapes.small,
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         modifier = modifier.fillMaxWidth()
     )
@@ -57,8 +58,8 @@ fun SearchBox(
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         modifier = modifier.fillMaxWidth(),
         leadingIcon = { SearchIcon() }
