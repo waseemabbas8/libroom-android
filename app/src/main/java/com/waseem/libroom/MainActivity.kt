@@ -4,44 +4,57 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.waseem.libroom.core.ui.theme.LIBroomTheme
 import com.waseem.libroom.feature.auth.presentation.LoginScreen
 import com.waseem.libroom.feature.onboarding.presentation.OnboardingScreen
 import com.waseem.libroom.feature.root.MainScreen
+import com.waseem.libroom.feature.root.domain.AuthState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+
+        installSplashScreen().setKeepOnScreenCondition {
+            viewModel.authState.value == AuthState.UNKNOWN
+        }
+
         actionBar?.hide()
 
         setContent {
             LIBroomTheme {
-                val authState = remember {
-                    mutableIntStateOf(0)
-                }
-                when(authState.value) {
-                    0 -> {
+                when(viewModel.authState.value) {
+                    AuthState.ONBOARDING -> {
                         OnboardingScreen(
                             viewModel = hiltViewModel(),
                             gotoAuth = {
-                                authState.value = 1
+                                viewModel.setAuthState(AuthState.UNAUTHENTICATED)
                             }
                         )
                     }
-                    1 -> {
+                    AuthState.UNAUTHENTICATED -> {
                         LoginScreen(viewModel = hiltViewModel()) {
-                            authState.value = 2
+                            viewModel.setAuthState(AuthState.AUTHENTICATED)
                         }
                     }
-                    2 -> {
+                    AuthState.AUTHENTICATED -> {
                         MainScreen()
+                    }
+                    else -> {
+                        Scaffold {
+                            Box(modifier = Modifier.padding(it))
+                        }
                     }
                 }
 
