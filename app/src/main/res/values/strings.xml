@@ -11,7 +11,7 @@
     <string name="discover_books">Discover Books</string>
     <string name="my_bookshelf">My bookshelf</string>
 
-    <string name="recent_reads">Recent read</string>
+    <string name="recommended">Recommended</string>
     <string name="recently_read">Recently read</string>
     <string name="popular">Popular</string>
     <string name="top_authors">Top Authors</string>

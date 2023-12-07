@@ -1,11 +1,13 @@
 package com.waseem.libroom.feature.search.presentation
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,6 +17,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -63,7 +67,7 @@ fun SearchScreen(
                         horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)
                     )
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(12.dp))
                 SearchBox(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.horizontal_screen_padding)))
                 when(state) {
                     is SearchState.SearchByState -> {
@@ -74,8 +78,7 @@ fun SearchScreen(
                         val topCategories = (state as SearchState.SearchByState).uiState.topCategories
                         if (topCategories.isNotEmpty()) {
                             SectionTitle(
-                                title = stringResource(id = R.string.top_categories),
-                                modifier = Modifier.padding(bottom = 12.dp)
+                                title = stringResource(id = R.string.top_categories)
                             ) {
                                 //TODO: implement view all callback
                             }
@@ -104,13 +107,8 @@ fun SearchScreen(
 private fun Authors(
     authors: List<AuthorUiState>
 ) {
-
-
     SectionTitle(
-        title = stringResource(id = R.string.top_authors),
-        modifier = Modifier.padding(
-            bottom = dimensionResource(id = R.dimen.section_title_margin_bottom)
-        )
+        title = stringResource(id = R.string.top_authors)
     ) {
         //TODO: implement view all callback
     }
@@ -121,21 +119,36 @@ private fun Authors(
         items(authors.size) {
             val author = authors[it]
             Column(
-                modifier = Modifier.width(70.dp)
+                modifier = Modifier.width(65.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AsyncImage(
-                    model = author.profileImage,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(70.dp)
-                        .clip(MaterialTheme.shapes.small),
-                    placeholder = painterResource(id = R.drawable.cover_placeholder)
-                )
+                Box(modifier = Modifier
+                    .size(65.dp)
+                    .border(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.inversePrimary,
+                        shape = CircleShape
+                    )
+                    .padding(2.dp)
+                ) {
+                    AsyncImage(
+                        model = author.profileImage,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(2.dp)
+                            .clip(CircleShape),
+                        placeholder = painterResource(id = R.drawable.cover_placeholder),
+                    )
+                }
+
                 Text(
                     text = author.name,
-                    style = MaterialTheme.typography.bodyMedium.copy(Color.Black),
-                    modifier = Modifier.padding(top = 4.dp)
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 4.dp)
                 )
             }
         }

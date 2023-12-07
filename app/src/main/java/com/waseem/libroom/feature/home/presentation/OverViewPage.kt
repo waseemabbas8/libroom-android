@@ -137,7 +137,7 @@ private fun RecentReads(
     onBookItemClick: (bookId: String) -> Unit
 ) {
     SectionTitle(
-        title = stringResource(id = R.string.recent_reads),
+        title = stringResource(id = R.string.recommended),
     ) {
         //TODO: implement view all callback
     }

@@ -36,8 +36,7 @@ fun SectionTitle(
         modifier = modifier.fillMaxWidth()
             .padding(
                 start = dimensionResource(id = R.dimen.horizontal_screen_padding),
-                top = dimensionResource(id = R.dimen.section_title_margin_top),
-                bottom = 8.dp,
+                top = dimensionResource(id = R.dimen.section_title_margin_top)
             ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

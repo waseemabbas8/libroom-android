@@ -61,7 +61,7 @@ fun FavoritesScreen(
                 ScreenTitle(title = stringResource(id = R.string.my_bookshelf))
                 SearchBox(
                     modifier = Modifier.padding(
-                        top = 8.dp,
+                        top = 12.dp,
                         bottom = dimensionResource(id = R.dimen.section_title_margin_top)
                     )
                 )
