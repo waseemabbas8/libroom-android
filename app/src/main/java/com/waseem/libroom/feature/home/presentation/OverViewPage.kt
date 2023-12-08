@@ -138,6 +138,7 @@ private fun RecentReads(
 ) {
     SectionTitle(
         title = stringResource(id = R.string.recommended),
+        modifier = Modifier.padding(bottom = 8.dp)
     ) {
         //TODO: implement view all callback
     }
@@ -158,6 +159,7 @@ private fun Popular(
 ) {
     SectionTitle(
         title = stringResource(id = R.string.popular),
+        modifier = Modifier.padding(bottom = 8.dp)
     ) {
         //TODO: implement view all callback
     }
