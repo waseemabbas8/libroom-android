@@ -1,5 +1,6 @@
 package com.waseem.libroom.feature.onboarding.presentation
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -85,6 +86,7 @@ fun OnboardingScreen(
                     stringResource(id = R.string.next)
                 }
                 FilledButton(
+                    modifier = Modifier.animateContentSize(),
                     text = text,
                     onClick = { viewModel.action(OnboardingAction.OnNext) },
                 )

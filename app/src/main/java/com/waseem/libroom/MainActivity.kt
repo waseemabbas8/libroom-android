@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -34,26 +35,28 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             LIBroomTheme {
-                when(viewModel.authState.value) {
-                    AuthState.ONBOARDING -> {
-                        OnboardingScreen(
-                            viewModel = hiltViewModel(),
-                            gotoAuth = {
-                                viewModel.setAuthState(AuthState.UNAUTHENTICATED)
-                            }
-                        )
-                    }
-                    AuthState.UNAUTHENTICATED -> {
-                        LoginScreen(viewModel = hiltViewModel()) {
-                            viewModel.setAuthState(AuthState.AUTHENTICATED)
+                Crossfade(targetState = viewModel.authState.value, label = "scene") { state ->
+                    when(state) {
+                        AuthState.ONBOARDING -> {
+                            OnboardingScreen(
+                                viewModel = hiltViewModel(),
+                                gotoAuth = {
+                                    viewModel.setAuthState(AuthState.UNAUTHENTICATED)
+                                }
+                            )
                         }
-                    }
-                    AuthState.AUTHENTICATED -> {
-                        MainScreen()
-                    }
-                    else -> {
-                        Scaffold {
-                            Box(modifier = Modifier.padding(it))
+                        AuthState.UNAUTHENTICATED -> {
+                            LoginScreen(viewModel = hiltViewModel()) {
+                                viewModel.setAuthState(AuthState.AUTHENTICATED)
+                            }
+                        }
+                        AuthState.AUTHENTICATED -> {
+                            MainScreen()
+                        }
+                        else -> {
+                            Scaffold {
+                                Box(modifier = Modifier.padding(it))
+                            }
                         }
                     }
                 }
