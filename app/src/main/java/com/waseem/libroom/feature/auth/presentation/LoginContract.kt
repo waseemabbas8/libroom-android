@@ -61,7 +61,8 @@ class LoginReducer @Inject constructor() : MviStateReducer<LoginState, LoginResu
     private operator fun LoginState.ErrorState.plus(result: LoginResult): LoginState {
         return when (result) {
             is LoginResult.Failure -> LoginState.ErrorState(msg = result.msg)
-            else -> throw IllegalStateException("unsupported")
+            is LoginResult.Loading -> LoginState.LoadingState
+            else -> throw IllegalStateException("unsupported result $result")
         }
     }
 }

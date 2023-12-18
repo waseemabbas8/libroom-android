@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "15787868221",
+    "project_id": "libroom-ae7b4",
+    "storage_bucket": "libroom-ae7b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15787868221:android:064b8524c01d6630c86a54",
+        "android_client_info": {
+          "package_name": "com.waseem.libroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFZ5MrRcAV7NI66ZRnKo3TmWbSTntW7FU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
