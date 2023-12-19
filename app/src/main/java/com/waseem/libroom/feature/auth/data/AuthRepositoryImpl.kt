@@ -26,6 +26,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun signOut(): SResult<Boolean> {
-        TODO("Not yet implemented")
+        firebaseAuth.signOut()
+        return SResult.success(true)
     }
 }

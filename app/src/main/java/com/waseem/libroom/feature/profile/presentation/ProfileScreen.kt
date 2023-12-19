@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -25,13 +26,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.waseem.libroom.R
-import com.waseem.libroom.core.compose.FilledButton
+import com.waseem.libroom.core.compose.FilledNetworkButton
 import com.waseem.libroom.core.compose.ScreenTitle
+import com.waseem.libroom.core.mvi.collectState
 import com.waseem.libroom.core.ui.ThemedPreview
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    viewModel: ProfileViewModel
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -87,12 +92,21 @@ fun ProfileScreen() {
         )
         Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.section_title_margin_bottom)))
 
-        FilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Logout"
-        ) {
+        Logout(viewModel = viewModel)
+    }
+}
 
-        }
+@Composable
+private fun Logout(viewModel: ProfileViewModel) {
+    val state by viewModel.collectState()
+
+    FilledNetworkButton(
+        modifier = Modifier.fillMaxWidth(),
+        text = "Logout",
+        loadingText = "Logging out...",
+        loading = state == ProfileState.LoadingState
+    ) {
+        viewModel.action(ProfileAction.SignOutClicked)
     }
 }
 
@@ -100,6 +114,8 @@ fun ProfileScreen() {
 @Composable
 private fun previewHome() {
     ThemedPreview {
-        ProfileScreen()
+        ProfileScreen(
+            viewModel = hiltViewModel()
+        )
     }
 }

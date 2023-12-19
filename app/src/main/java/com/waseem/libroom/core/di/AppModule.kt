@@ -59,6 +59,7 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideUserPreferenceRepository(dataStore: DataStore<Preferences>): UserPreferenceRepository {
         return UserPreferenceRepositoryImpl(dataStore)
     }
@@ -69,6 +70,7 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideUpdateAuthState(userPreferenceRepository: UserPreferenceRepository): UpdateAuthState {
         return UpdateAuthStateImpl(userPreferenceRepository)
     }

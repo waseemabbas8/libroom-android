@@ -5,6 +5,8 @@ import com.waseem.libroom.feature.auth.data.AuthRepositoryImpl
 import com.waseem.libroom.feature.auth.domain.AuthRepository
 import com.waseem.libroom.feature.auth.domain.SignInWithEmailPassword
 import com.waseem.libroom.feature.auth.domain.SignInWithEmailPasswordImpl
+import com.waseem.libroom.feature.auth.domain.SignOut
+import com.waseem.libroom.feature.auth.domain.SignOutImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +29,10 @@ object AuthModule {
     ): SignInWithEmailPassword {
         return SignInWithEmailPasswordImpl(dispatcher = dispatcher, authRepository = authRepository)
     }
+
+    @Provides
+    fun provideSignOut(
+        authRepository: AuthRepository
+    ): SignOut = SignOutImpl(authRepository = authRepository)
 
 }
