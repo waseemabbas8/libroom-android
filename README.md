@@ -3,14 +3,13 @@ Libroom is a mobile app that lets you explore and delve into the world of litera
 A practical example of implementing Clean Architecture principles in Android development. 
 It demonstrates how to structure your Android app using a layered architecture with MVI and MVVM.
 
-| Onboarding                                  | Login                                  | Home                                  |
-|---------------------------------------------|----------------------------------------|---------------------------------------|
-| ![Onboarding](/screenshots/onboarding.webp) | ![Login](/screenshots/onboarding.webp) | ![Home](/screenshots/onboarding.webp) |
+| Onboarding                                | Login                                | Home                                |
+|-------------------------------------------|--------------------------------------|-------------------------------------|
+| ![Alt Text](/screenshots/onboarding.webp) | ![Alt Text](/screenshots/login.webp) | ![Alt Text](/screenshots/home.webp) |
 
-| Search                              | Book Summary                                   | Reader                                   |
-|-------------------------------------|------------------------------------------------|------------------------------------------|
-| ![Search](/screenshots/search.webp) | ![Book Summary](/screenshots/book_detail.webp) | ![Reader](/screenshots/book_reader.webp) |
-
+| Search                                | Book Summary                               | Reader                                     |
+|---------------------------------------|--------------------------------------------|--------------------------------------------|
+| ![Alt Text](/screenshots/search.webp) | ![Alt Text](/screenshots/book_detail.webp) | ![Alt Text](/screenshots/book_reader.webp) |
 
 ## Getting Started
 Clone repository and open in Android Studio to build and install APK:
