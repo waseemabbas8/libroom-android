@@ -1,8 +1,8 @@
+![featured.webp](/screenshots/featured.webp)
 # libroom-android
 Libroom is a mobile app that lets you explore and delve into the world of literature, offering both reading and listening experiences.
 A practical example of implementing Clean Architecture principles in Android development. 
 It demonstrates how to structure your Android app using a layered architecture with MVI and MVVM.
-![featured.webp](/screenshots/featured.webp)
 
 | Search                                | Onboarding                                 | Reader                                     |
 |---------------------------------------|--------------------------------------------|--------------------------------------------|
