@@ -1,6 +1,5 @@
 package com.waseem.libroom.feature.root.domain
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.core.usecase.UseCase
 
 interface UpdateAuthState : UseCase<Unit, UpdateAuthState.Params> {
@@ -10,7 +9,7 @@ interface UpdateAuthState : UseCase<Unit, UpdateAuthState.Params> {
 class UpdateAuthStateImpl(
     private val userPreferenceRepository: UserPreferenceRepository
 ) : UpdateAuthState {
-    override suspend fun invoke(params: UpdateAuthState.Params): SResult<Unit> {
-        return SResult.success(userPreferenceRepository.setAuthState(params.authState))
+    override suspend fun invoke(params: UpdateAuthState.Params): Result<Unit> {
+        return Result.success(userPreferenceRepository.setAuthState(params.authState))
     }
 }

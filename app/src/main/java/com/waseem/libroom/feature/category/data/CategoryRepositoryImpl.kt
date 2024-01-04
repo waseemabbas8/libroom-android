@@ -1,12 +1,11 @@
 package com.waseem.libroom.feature.category.data
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.feature.category.domain.BookCategory
 import com.waseem.libroom.feature.category.domain.CategoryRepository
 import java.util.UUID
 
 class CategoryRepositoryImpl : CategoryRepository {
-    override fun getAllCategories(): SResult<List<BookCategory>> {
+    override fun getAllCategories(): Result<List<BookCategory>> {
         val categories = listOf(
             BookCategory(
                 id = UUID.randomUUID().toString(),
@@ -34,10 +33,10 @@ class CategoryRepositoryImpl : CategoryRepository {
                 thumbnail = ""
             )
         )
-        return SResult.success(categories)
+        return Result.success(categories)
     }
 
-    override fun getTopCategories(): SResult<List<BookCategory>> {
+    override fun getTopCategories(): Result<List<BookCategory>> {
         val categories = listOf(
             BookCategory(
                 id = UUID.randomUUID().toString(),
@@ -70,6 +69,6 @@ class CategoryRepositoryImpl : CategoryRepository {
                 thumbnail = "https://picsum.photos/id/144/500/300"
             )
         )
-        return SResult.success(categories)
+        return Result.success(categories)
     }
 }

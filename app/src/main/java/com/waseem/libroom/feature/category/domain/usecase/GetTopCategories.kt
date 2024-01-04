@@ -1,6 +1,5 @@
 package com.waseem.libroom.feature.category.domain.usecase
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.core.usecase.NoParams
 import com.waseem.libroom.core.usecase.UseCase
 import com.waseem.libroom.feature.category.domain.BookCategory
@@ -14,7 +13,7 @@ class GetTopCategoriesImpl(
     private val dispatcher: CoroutineDispatcher,
     private val repository: CategoryRepository
 ) : GetTopCategories {
-    override suspend fun invoke(params: NoParams): SResult<List<BookCategory>> {
+    override suspend fun invoke(params: NoParams): Result<List<BookCategory>> {
         return withContext(dispatcher) {
             repository.getTopCategories()
         }

@@ -1,21 +1,20 @@
 package com.waseem.libroom.feature.book.data
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.feature.book.domain.Book
 import com.waseem.libroom.feature.book.domain.BookRepository
 import com.waseem.libroom.feature.home.domain.HomeContent
 import java.util.UUID
 
 class BookRepositoryImpl : BookRepository {
-    override suspend fun getPopularBooks(): SResult<List<Book>> {
+    override suspend fun getPopularBooks(): Result<List<Book>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getRecentReads(): SResult<List<Book>> {
+    override suspend fun getRecentReads(): Result<List<Book>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getHomeContent(): SResult<HomeContent> {
+    override suspend fun getHomeContent(): Result<HomeContent> {
         val recentReads = listOf(
             Book(
                 id = UUID.randomUUID().toString(),
@@ -86,10 +85,10 @@ class BookRepositoryImpl : BookRepository {
                 cover = "https://covers.openlibrary.org/b/id/505653-M.jpg"
             )
         )
-        return SResult.success(HomeContent(recentReads, popular))
+        return Result.success(HomeContent(recentReads, popular))
     }
 
-    override suspend fun getFavoritesByUserId(userId: String): SResult<List<Book>> {
+    override suspend fun getFavoritesByUserId(userId: String): Result<List<Book>> {
         val books = listOf(
             Book(
                 id = UUID.randomUUID().toString(),
@@ -128,6 +127,6 @@ class BookRepositoryImpl : BookRepository {
                 cover = "https://covers.openlibrary.org/b/id/14407898-L.jpg"
             ),
         )
-        return SResult.success(books)
+        return Result.success(books)
     }
 }

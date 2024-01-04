@@ -1,12 +1,11 @@
 package com.waseem.libroom.feature.author.data
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.feature.author.domain.Author
 import com.waseem.libroom.feature.author.domain.AuthorRepository
 import java.util.UUID
 
 class AuthorRepositoryImpl : AuthorRepository {
-    override suspend fun getAuthors(): SResult<List<Author>> {
+    override suspend fun getAuthors(): Result<List<Author>> {
         val authors = listOf(
             Author(
                 id = UUID.randomUUID().toString(),
@@ -39,7 +38,7 @@ class AuthorRepositoryImpl : AuthorRepository {
                 image = "https://covers.openlibrary.org/a/id/6882587-M.jpg"
             )
         )
-        return SResult.success(authors)
+        return Result.success(authors)
     }
 
 }

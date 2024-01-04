@@ -1,6 +1,5 @@
 package com.waseem.libroom.feature.home.domain
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.core.usecase.NoParams
 import com.waseem.libroom.core.usecase.UseCase
 import com.waseem.libroom.feature.book.domain.BookRepository
@@ -13,7 +12,7 @@ class GetHomeContentImpl(
     private val bookRepository: BookRepository,
     private val dispatcher: CoroutineDispatcher
 ) : GetHomeContent {
-    override suspend fun invoke(params: NoParams): SResult<HomeContent> {
+    override suspend fun invoke(params: NoParams): Result<HomeContent> {
         return withContext(dispatcher) {
             bookRepository.getHomeContent()
         }

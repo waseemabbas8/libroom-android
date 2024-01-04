@@ -1,6 +1,5 @@
 package com.waseem.libroom.feature.auth.domain
 
-import com.waseem.libroom.core.SResult
 import com.waseem.libroom.core.usecase.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -13,7 +12,7 @@ class SignInWithEmailPasswordImpl(
     private val dispatcher: CoroutineDispatcher,
     private val authRepository: AuthRepository
 ) : SignInWithEmailPassword {
-    override suspend fun invoke(params: SignInWithEmailPassword.Params): SResult<User> {
+    override suspend fun invoke(params: SignInWithEmailPassword.Params): Result<User> {
         return withContext(dispatcher) {
             authRepository.signIn(params.email, params.password)
         }
