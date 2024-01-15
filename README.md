@@ -13,7 +13,7 @@ Clone repository and open in Android Studio to build and install APK:
 ```shell
 git clone https://github.com/waseemabbas8/libroom-android.git
 ```
-Use following credentials to login:
+Use the following credentials to log in:
 ```shell
 Email: test@gmail.com
 Password: 123456
@@ -32,6 +32,12 @@ Password: 123456
 | Firebase Auth         | For in app user authentication                  |
 ## Stay tuned!
 I'm constantly working on improving Libroom and adding new features. Keep an eye on the repository for updates and releases.
+
+I've also initiated a step-by-step guide for the development of our Libroom Application on [Medium](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-9d164bd94080).
+
+[**From Concept to Design: Crafting an Android Audio Book App with Jetpack Compose and MVI**](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-9d164bd94080)
+- [Part 1: Introduction and Project Setup](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-9d164bd94080)
+- [Part 2: Foundation for MVI & Building Blocks of the App](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-p-2-2edf26c36e1f)
 
 We welcome contributions from the community! Feel free to fork the repository, create pull requests with new features or bug fixes, and get involved in the development process.
 ## Author
