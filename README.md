@@ -24,12 +24,12 @@ Password: 123456
 | Kotlin                | Programming Language                            |
 | Kotlin Coroutines     | For async operations                            |
 | Jetpack Compose       | The whole UI of the app is built in Compose     |
-| Compose Navigation    | Navigation betwen different screens             |
+| Compose Navigation    | Navigation between different screens            |
 | Hilt                  | For dependency injection                        |
-| Data Store            | To store key value pair data like user settings |
-| Kotlinx Serialization | To mapping json on POJO models                  |
+| Data Store            | To store key-value pair data like user settings |
+| Kotlinx Serialization | To map JSON on POJO models                      |
 | Ktor Client           | A network library to consume REST APIs          |
-| Firebase Auth         | For in app user authentication                  |
+| Firebase Auth         | For in-app user authentication                  |
 ## Stay tuned!
 I'm constantly working on improving Libroom and adding new features. Keep an eye on the repository for updates and releases.
 
@@ -38,6 +38,8 @@ I've also initiated a step-by-step guide for the development of our Libroom Appl
 [**From Concept to Design: Crafting an Android Audio Book App with Jetpack Compose and MVI**](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-9d164bd94080)
 - [Part 1: Introduction and Project Setup](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-9d164bd94080)
 - [Part 2: Foundation for MVI & Building Blocks of the App](https://medium.com/@waseemabbas8/from-concept-to-code-crafting-an-android-audio-book-app-with-jetpack-compose-and-mvi-p-2-2edf26c36e1f)
+- [Part 3: Implement a Login feature with Clean Architecture & MVI](https://medium.com/p/f5a8fe2d638c)
+
 
 We welcome contributions from the community! Feel free to fork the repository, create pull requests with new features or bug fixes, and get involved in the development process.
 ## Author
